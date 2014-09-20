@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<!--Converted with LaTeX2HTML 96.1 (Feb 5, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+
+
+<title>Bicycle Model</title>
+<meta name="description" content="Bicycle Model">
+<meta name="keywords" content="model">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<link rel="STYLESHEET" href="bicycle_files/model.htm">
+</head><body lang="EN">
+ <br> <p>
+</p><h1><a name="SECTION00010000000000000000">Bicycle Model</a></h1>
+<p>
+The non-linear bicycle model considers longitudinal (<i>x</i>), lateral
+(<i>y</i>), and yaw  <img alt="tex2html_wrap_inline432" src="bicycle_files/img1.gif" align="MIDDLE" width="23" height="30">  motion under the assumption of negligible
+lateral weight shift, roll and compliance steer while traveling on
+a smooth road. Our design of control strategy is to control both
+longitudinal and lateral motions during hard braking and steering
+maneuvers. Angular velocities of front and rear tires are added to
+the states in order to investigate directional interactions
+between longitudinal and lateral tire forces. In addition to these
+five states, longitudinal and lateral positions and yaw angle with
+respect to the fixed inertial coordinates are added to the dynamic
+equation in order to refresh the vehicle position and orientation
+in the simulation scene. Thus, the bicycle model used in our
+simulator has 5 Degrees Of Freedom with 8 state equations.
+The bicycle model developement presented here is based on 
+reference [1]. Figure 1 shows side and top 
+views of the vehicle using this bicycle model. Using free body 
+diagram shown in top view of Figure 1, the equations of motion are derived.
+</p><p><a name="15">&nbsp;</a><a name="figveh2">&nbsp;</a> <img alt="figure13" src="bicycle_files/img2.gif" align="BOTTOM" width="688" height="410"> <br>
+<strong>Figure 1:</strong> Free Body
+Diagram of a Vehicle<br>
+</p><p>
+Summing the longitudinal forces along the body x axis leads to
+</p><p><a name="eqxaccel">&nbsp;</a> <img alt="equation18" src="bicycle_files/img3.gif" align="BOTTOM" width="550" height="21"> </p><p>
+Where <i>m</i> is the mass of a vehicle,  <img alt="tex2html_wrap_inline436" src="bicycle_files/img4.gif" align="MIDDLE" width="16" height="18">  and  <img alt="tex2html_wrap_inline438" src="bicycle_files/img5.gif" align="MIDDLE" width="16" height="19">  are the
+longitudinal and lateral components of the vehicle velocity
+resolved along the body axis, <i>r</i> is the yaw rate, and  <img alt="tex2html_wrap_inline442" src="bicycle_files/img6.gif" align="MIDDLE" width="14" height="29"> 
+and  <img alt="tex2html_wrap_inline444" src="bicycle_files/img7.gif" align="MIDDLE" width="13" height="28">  are the front and rear wheel steering angles.
+Summing the lateral forces along the body y axis gives
+</p><p><a name="eqyaccel">&nbsp;</a> <img alt="equation32" src="bicycle_files/img8.gif" align="BOTTOM" width="542" height="21"> </p><p>
+The sum of the yaw moments about the car CG yields
+</p><p><a name="eqyawaccel">&nbsp;</a> <img alt="equation46" src="bicycle_files/img9.gif" align="BOTTOM" width="542" height="21"> </p><p>
+</p><p><a name="60">&nbsp;</a><a name="figveh3">&nbsp;</a> <img alt="figure58" src="bicycle_files/img10.gif" align="BOTTOM" width="456" height="356"> <br>
+<strong>Figure 2:</strong> Free Body
+Diagram of a Wheel<br>
+</p><p>
+For the front and rear wheels, the sum of the torque about the
+axle, as shown in Figure 2, results in
+</p><p> <img alt="eqnarray64" src="bicycle_files/img11.gif" align="BOTTOM" width="500" height="48"> </p><p>
+Where,  <img alt="tex2html_wrap_inline446" src="bicycle_files/img12.gif" align="MIDDLE" width="19" height="19">  and  <img alt="tex2html_wrap_inline448" src="bicycle_files/img13.gif" align="MIDDLE" width="18" height="18">  are the angular velocities of the
+front and rear wheels,  <img alt="tex2html_wrap_inline450" src="bicycle_files/img14.gif" align="MIDDLE" width="17" height="27">  is the inertia of the wheel about the
+axle,  <img alt="tex2html_wrap_inline452" src="bicycle_files/img15.gif" align="MIDDLE" width="22" height="27">  is the wheel radius,  <img alt="tex2html_wrap_inline454" src="bicycle_files/img16.gif" align="MIDDLE" width="24" height="27">  and  <img alt="tex2html_wrap_inline456" src="bicycle_files/img17.gif" align="MIDDLE" width="23" height="27">  are the
+applied braking torques, and  <img alt="tex2html_wrap_inline458" src="bicycle_files/img18.gif" align="MIDDLE" width="25" height="27">  and  <img alt="tex2html_wrap_inline460" src="bicycle_files/img19.gif" align="MIDDLE" width="24" height="27">  are the applied
+throttling torques for the front and rear wheels. All the vehicle
+specifications are based on the 1984 Honda Accord [2]
+with reasonable braking torques for front and rear tires. Yaw
+angle is directly found by integrating the yaw rate. Since yaw
+angle is with respect to the fixed coordinates, longitudinal and
+lateral position with respect to the inertial fixed coordinates
+are also found as follows.
+</p><p> <img alt="equation83" src="bicycle_files/img20.gif" align="BOTTOM" width="500" height="23"> </p><p>
+</p><p> <img alt="eqnarray86" src="bicycle_files/img21.gif" align="BOTTOM" width="500" height="49"> </p><p>
+Where,  <img alt="tex2html_wrap_inline462" src="bicycle_files/img22.gif" align="MIDDLE" width="20" height="18">  and  <img alt="tex2html_wrap_inline464" src="bicycle_files/img23.gif" align="MIDDLE" width="19" height="18">  denote the velocity components with respect
+to the fixed inertial coordinates. Simple integration based on the
+forth-order Runge-Kutta method is used to integrate the above eight
+states in the simulation loop.
+</p><h1><a name="SECTION00020000000000000000">Tire Force Calculation</a></h1>
+<p>
+The longitudinal and lateral forces from front and rear tires are
+derived from the non-linear tire model discussed earlier. The
+input variables for the tire model are front and rear normal loads
+( 
+<img alt="tex2html_wrap_inline470" src="bicycle_files/img24.gif" align="middle" width="25" height="27">  and  
+<img alt="tex2html_wrap_inline472" src="bicycle_files/img25.gif" align="middle" width="24" height="27"> ), slip angles ( 
+<img alt="tex2html_wrap_inline442" src="bicycle_files/img6.gif" align="middle" width="14" height="29">  and
+ <img alt="tex2html_wrap_inline444" src="bicycle_files/img7.gif" align="middle" width="13" height="28"> ), and longitudinal slip ratios ( 
+<img alt="tex2html_wrap_inline478" src="bicycle_files/img26.gif" align="middle" width="25" height="29">  and
+ <img alt="tex2html_wrap_inline480" src="bicycle_files/img27.gif" align="middle" width="24" height="28"> ). The normal forces of front and rear tires are
+determined according to the instantaneous longitudinal
+acceleration. Summing the moments about the rear contact patch
+using the side view of Figure 1, normal load of front
+tire is found as
+</p><p> 
+<img alt="equation96" src="bicycle_files/img28.gif" align="bottom" width="500" height="45"> </p><p>
+Summing the moments about the front contact patch,
+</p><p> 
+<img alt="equation101" src="bicycle_files/img29.gif" align="bottom" width="500" height="45"> </p><p>
+Where  
+<img alt="tex2html_wrap_inline482" src="bicycle_files/img30.htm" align="MIDDLE" width="16" height="18">  is the instantaneous longitudinal acceleration and h
+is the height of the car <i>CG</i> from the ground.
+</p><p><a name="108">&nbsp;</a><a name="figveh4">&nbsp;</a> 
+<img alt="figure106" src="bicycle_files/img31.gif" align="bottom" width="568" height="230"> <br>
+<strong>Figure 3:</strong> Slip Angle
+of Front Wheel<br>
+</p><p>
+</p><p><a name="113">&nbsp;</a><a name="figveh5">&nbsp;</a> 
+<img alt="figure111" src="bicycle_files/img32.gif" align="bottom" width="564" height="173"> <br>
+<strong>Figure 4:</strong> Slip Angle
+of Rear Wheel<br>
+</p><p>
+From Figure 3 and Figure 4, velocities
+of front and rear tires are determined by summing the velocity at
+<i>CG</i> and the velocities effected by the yaw rate. Thus, the slip
+angles of front and rear tires are found as
+</p><p><a name="eqaf">&nbsp;</a> 
+<img alt="equation118" src="bicycle_files/img33.gif" align="bottom" width="500" height="46"> </p><p>
+</p><p><a name="eqar">&nbsp;</a> 
+<img alt="equation124" src="bicycle_files/img34.gif" align="bottom" width="500" height="46"> </p><p>
+Also, the speed of the front and rear tires are calculated by the
+following equations.
+</p><p> 
+<img alt="equation130" src="bicycle_files/img35.gif" align="bottom" width="500" height="35"> </p><p>
+</p><p> 
+<img alt="equation134" src="bicycle_files/img36.gif" align="bottom" width="500" height="35"> </p><p>
+Where,  
+<img alt="tex2html_wrap_inline488" src="bicycle_files/img37.gif" align="middle" width="22" height="27">  and  
+<img alt="tex2html_wrap_inline490" src="bicycle_files/img38.gif" align="middle" width="21" height="27">  represent the magnitude of the front
+and rear tire axle velocities. To calculate the longitudinal slip, longitudinal
+component of the tire velocity should be derived. The front and
+rear longitudinal velocity components are found by
+</p><p> 
+<img alt="equation140" src="bicycle_files/img39.gif" align="bottom" width="500" height="21"> </p><p>
+</p><p> 
+<img alt="equation144" src="bicycle_files/img40.gif" align="bottom" width="500" height="20"> </p><p>
+Then, the longitudinal slip is determined according to the equation in 
+tire model. Under braking conditions, longitudinal slip of front
+and rear tires are calculated by
+</p><p> 
+<img alt="equation148" src="bicycle_files/img41.gif" align="bottom" width="500" height="45"> </p><p>
+</p><p> 
+<img alt="equation153" src="bicycle_files/img42.gif" align="bottom" width="500" height="42"> </p><p>
+Using the normal load, slip angle, longitudinal slip, and
+non-linear tire model realistic longitudinal and lateral forces
+are generated for the 5 DOF bicycle model.
+ <a name="SECTIONREF"><h2>References</h2></a></p><p>
+</p><dl compact="compact">
+<dt><a name="Taheri"><strong>1</strong></a></dt><dd> Taheri, S.,
+<i>An Investigation and Design of Slip Control Braking Systems
+Integrated with Four Wheel Steering</i>, Ph.D. Thesis, Clemson
+University, 1990.
+</dd><dt><a name="Accord"><strong>2</strong></a></dt><dd> American Honda Motor Company Inc.,
+<i>Motor Vehicle Specifications, Passenger Car, Accord 1984</i>,
+Technical Report, Honda, Windsor Locks, 1984.
+</dd></dl>
+</body></html>

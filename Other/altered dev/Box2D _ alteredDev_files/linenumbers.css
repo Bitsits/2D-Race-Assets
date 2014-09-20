@@ -1,0 +1,8 @@
+pre {
+	background:transparent url(linenumbers.gif) no-repeat scroll left top;
+	font-size:12px;
+	line-height:14px;
+	margin:0pt;
+	padding-left:25px;
+	margin-bottom: 15px;
+}

@@ -1,0 +1,1082 @@
+/*
+** MediaWiki 'Dolphin' stylesheet for StrategyWiki
+** Copyright 2010
+** Created by Teddy Bradford <http://teddybradford.com/>
+*/
+
+@import url(reset.css);
+
+#column-content {
+	width: 960px;
+	float: right;
+}
+#column-one {
+	width: 200px;
+}
+body {
+	font: 62.5% Helvetica, Arial, Verdana, sans-serif;
+}
+
+/* scale back up to a sane default */
+#globalWrapper {
+	font-size: 14px;
+	width: 960px;
+	margin: 13em auto 3.75em;
+	padding: 0;
+}
+
+/* general styles */
+
+table {
+	font-size: 100%;
+	color: black;
+	/* we don't want the bottom borders of <h2>s to be visible through
+	   floated tables */
+	background-color: white;
+}
+fieldset table {
+	/* but keep table layouts in forms clean... */
+	background: none;
+}
+a {
+	text-decoration: none;
+	color: #06c;
+}
+a:visited {
+	color: #5a3696;
+}
+a:active {
+	color: #faa700;
+}
+a:hover {
+	text-decoration: underline;
+}
+a.stub {
+	color: #772233;
+}
+a.new, #p-personal a.new {
+	color: #ba0000;
+}
+a.new:visited, #p-personal a.new:visited {
+	color: #a55858;
+}
+
+img {
+	border: none;
+	vertical-align: middle;
+}
+p {
+	margin: .4em 0 .5em 0;
+	line-height: 1.4em;
+}
+p img {
+	margin: 0;
+}
+
+hr {
+	height: 1px;
+	color: #aaa;
+	background-color: #aaa;
+	border: 0;
+	margin: .2em 0 .2em 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: black;
+	background: none;
+	border-bottom: 1px solid #aaa;
+}
+h1 { font-size: 2em; }
+h1 .editsection { font-size: 0.5em; }
+h2 { font-size: 1.75em; }
+h2 .editsection { font-size: 0.57em; }
+h3, h4, h5, h6 {
+	border-bottom: none;
+	font-weight: bold;
+}
+h3 { font-size: 1.5em; }
+h3 .editsection { font-size: 0.66em; font-weight: normal; }
+h4 { font-size: 1.25em; }
+h4 .editsection { font-size: 0.8em; font-weight: normal; }
+h5 { font-size: 1em; }
+h5 .editsection { font-weight: normal; }
+h6 { font-size: 0.75em; }
+h6 .editsection { font-size: 1.32em; font-weight: normal; }
+
+ul {
+	line-height: 1.4em;
+	list-style-type: square;
+	list-style-image: url(bullet.gif);
+}
+ol {
+	line-height: 1.4em;
+	margin: .3em 0 0 3.2em;
+	padding: 0;
+	list-style-image: none;
+}
+dt {
+	font-weight: bold;
+	margin-bottom: .1em;
+}
+dl {
+	margin-top: .2em;
+	margin-bottom: .5em;
+}
+dd {
+	line-height: 1.5em;
+	margin-left: 2em;
+	margin-bottom: .1em;
+}
+
+fieldset {
+	border: 1px solid #2f6fab;
+	margin: 1em 0 1em 0;
+	padding: 0 1em 1em;
+	line-height: 1.5em;
+}
+fieldset.nested {
+	margin: 0 0 0.5em 0;
+	padding: 0 0.5em 0.5em;
+}
+legend {
+	padding: .5em;
+	font-size: 95%;
+}
+form {
+	border: none;
+	margin: 0;
+}
+
+textarea {
+	width: 100%;
+	padding: .1em;
+}
+
+input.historysubmit {
+	padding: 0 .3em .3em .3em !important;
+	font-size: 94%;
+	cursor: pointer;
+	height: 1.7em !important;
+	margin-left: 1.6em;
+}
+select {
+	vertical-align: top;
+}
+abbr, acronym, .explain {
+	border-bottom: 1px dotted black;
+	color: black;
+	background: none;
+	cursor: help;
+}
+q {
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
+}
+/* disabled for now
+blockquote {
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
+}*/
+code {
+	background-color: #f9f9f9;
+}
+pre {
+	padding: 1em;
+	border: 1px dashed #2f6fab;
+	color: black;
+	background-color: #f9f9f9;
+	line-height: 1.1em;
+}
+
+/* =SexyNavbar */
+
+#p-navigation {
+	position: absolute;
+	top: 7.5em;
+}
+#p-navigation ul {
+	list-style: none;
+}
+#p-navigation ul.primary {
+	float: right;
+	position: absolute;
+	width: 940px;
+	height: 2.5em;
+	padding: 0 10px;
+	background: #ddd;
+	background: -moz-linear-gradient(top, #ccc, #ddd);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#ddd));
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+#p-navigation ul.primary li.primary {
+	float: left;
+	border-right: 1px solid #ccc;
+}
+#p-navigation ul.primary li.primary.right {
+	float: right;
+	border-right: 0;
+	border-left: 1px solid #ccc;
+}
+#p-navigation ul.primary li.primary > a {
+	display: block;
+	height: 2.5em;
+	line-height: 2.5em;
+	padding: 0 15px;
+	color: #333;
+	font-weight: 700;
+}
+#p-navigation ul.primary li.primary.active > a {
+	height: 2.75em;
+	line-height: 2.75em;
+	margin-top: -0.25em;
+	text-decoration: none;
+	cursor: default;
+	color: #fff;
+	background: #666;
+	background: -moz-linear-gradient(top, #999, #666);
+	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#666));
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+#p-navigation ul.primary li.primary > h5 {
+	display: block;
+	height: 2.5em;
+	line-height: 2.5em;
+	padding: 0 15px;
+	color: #333;
+	font-weight: 700;
+	font-size: 100%;
+}
+#p-navigation ul.primary li.primary.active > h5 {
+	height: 2.75em;
+	line-height: 2.75em;
+	margin-top: -0.25em;
+	text-decoration: none;
+	cursor: default;
+	color: #fff;
+	background: #666;
+	background: -moz-linear-gradient(top, #999, #666);
+	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#666));
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+#p-navigation ul.secondary {
+	position: absolute;
+	left: 0;
+	top: 35px;
+	width: 940px;
+	padding: 0 10px;
+	background: #666;
+	background: -moz-linear-gradient(top, #666, #333);
+	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#333));
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+#p-navigation ul.secondary li.secondary {
+	float: left;
+}
+#p-navigation ul.secondary li.secondary > a {
+	display: block;
+	height: 2.25em;
+	padding: 0 15px;
+	color: #fff;
+	line-height: 2.25em;
+}
+
+/* =SexyToC */
+#sexytoc {
+
+}
+#sexytoc h5 {
+	display: block;
+	padding: 5px;
+	color: #fff;
+	text-align: center;
+	background: #666;
+	background: -moz-linear-gradient(top, #666, #333);
+	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#333));
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+#sexytoc .pBody {
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+
+/* =BottomToolbar */
+#bottomtoolbar {
+	position: fixed;
+	bottom: 0;
+	z-index: 9999;
+	width: 960px;
+	color: #fff;
+	text-transform: lowercase;
+}
+#bottomtoolbar .tab {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 175px;
+	height: 40px;
+	background: url(sexytoolbartab.png) no-repeat;
+	cursor: pointer;
+}
+#bottomtoolbar .tabclick {
+	background-position: 0 -40px;
+}
+#bottomtoolbar .primary {
+	position: relative;
+	height: 2em;
+	background: #333;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+#bottomtoolbar .primary ul {
+	margin-left: 180px;
+}
+#bottomtoolbar .primary li {
+	float: left;
+	border-right: 1px solid #555;
+}
+#bottomtoolbar .primary li.right {
+	float: right;
+	margin-right: 10px;
+	border-left: 1px solid #555;
+}
+#bottomtoolbar .primary a {
+	display: block;
+	color: #fff;
+	height: 2em;
+	line-height: 2em;
+	padding: 0 10px;
+}
+#bottomtoolbar .primary li:first-child {
+	border-left: 1px solid #555;
+}
+#bottomtoolbar .primary a:hover {
+	background: #444;
+}
+#bottomtoolbar .secondary {
+	padding: 0 20px;
+	background: #666;
+}
+#bottomtoolbar .secondary ul {
+}
+#bottomtoolbar .secondary li {
+	display: inline;
+	margin-right: 15px;
+}
+#bottomtoolbar .secondary a {
+	color: #ccc;
+	line-height: 2em;
+}
+#bottomtoolbar .secondary a:hover {
+	color: #fff;
+}
+
+/*
+** the main content area
+*/
+
+#siteSub {
+	font-size: small;
+	color: #666;
+}
+#jump-to-nav {
+	display: none;
+}
+
+#contentSub, #contentSub2 {
+	font-size: 84%;
+	line-height: 1.2em;
+	margin: 0 0 1.4em 1em;
+	color: #7d7d7d;
+	width: auto;
+}
+span.subpages {
+	display: block;
+}
+
+/* Some space under the headers in the content area */
+#bodyContent h1, #bodyContent h2 {
+	margin-bottom: .6em;
+}
+#bodyContent h3, #bodyContent h4, #bodyContent h5 {
+	margin-bottom: .3em;
+}
+#firstHeading {
+	margin-bottom: .1em;
+	/* These two rules hack around bug 2013 (fix for more limited bug 11325).
+	   When bug 2013 is fixed properly, they should be removed. */
+	line-height: 1.2em;
+	padding-bottom: 0;
+}
+
+/* user notification thing */
+.usermessage {
+	background-color: #ffce7b;
+	border: 1px solid #ffa500;
+	color: black;
+	font-weight: bold;
+	margin: 2em 0 1em;
+	padding: .5em 1em;
+	vertical-align: middle;
+}
+#siteNotice {
+	text-align: center;
+	font-size: 95%;
+	padding: 0 0.9em;
+}
+#siteNotice p {
+	margin: 0;
+	padding: 0;
+}
+
+.catlinks {
+	border: 1px solid  #666;
+	background-color: #eee;
+	padding: 5px;
+	margin-top: 1em;
+	clear: both;
+}
+
+/* emulate center */
+.center {
+	width: 100%;
+	text-align: center;
+}
+*.center * {
+	margin-left: auto;
+	margin-right: auto;
+}
+/* small for tables and similar */
+.small, .small * {
+	font-size: 94%;
+}
+table.small {
+	font-size: 100%;
+}
+
+/*
+** content styles
+*/
+
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+}
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
+}
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}
+
+.mw-warning {
+	margin-left: 50px;
+	margin-right: 50px;
+	text-align: center;
+}
+
+/* images */
+div.floatright, table.floatright {
+	clear: right;
+	float: right;
+	position: relative;
+	margin: 0 0 .5em .5em;
+	border: 0;
+/*
+	border: .5em solid white;
+	border-width: .5em 0 .8em 1.4em;
+*/
+}
+div.floatright p { font-style: italic; }
+div.floatleft, table.floatleft {
+	float: left;
+	clear: left;
+	position: relative;
+	margin: 0 .5em .5em 0;
+	border: 0;
+/*
+	margin: .3em .5em .5em 0;
+	border: .5em solid white;
+	border-width: .5em 1.4em .8em 0;
+*/
+}
+div.floatleft p { font-style: italic; }
+/* thumbnails */
+div.thumb {
+	margin-bottom: .5em;
+	border-style: solid;
+	border-color: white;
+	width: auto;
+}
+div.thumbinner {
+	border: 1px solid #ccc;
+	padding: 3px !important;
+	background-color: #f9f9f9;
+	font-size: 94%;
+	text-align: center;
+	overflow: hidden;
+}
+html .thumbimage {
+	border: 1px solid #ccc;
+}
+html .thumbcaption {
+	border: none;
+	text-align: left;
+	line-height: 1.4em;
+	padding: 3px !important;
+	font-size: 94%;
+}
+div.magnify {
+	float: right;
+	border: none !important;
+	background: none !important;
+}
+div.magnify a, div.magnify img {
+	display: block;
+	border: none !important;
+	background: none !important;
+}
+div.tright {
+	clear: right;
+	float: right;
+	border-width: .5em 0 .8em 1.4em;
+}
+div.tleft {
+	float: left;
+	clear: left;
+	margin-right: .5em;
+	border-width: .5em 1.4em .8em 0;
+}
+img.thumbborder {
+	border: 1px solid #dddddd;
+}
+.hiddenStructure {
+	display: none;
+}
+
+/*
+** classes for special content elements like town boxes
+** intended to be referenced directly from the wiki src
+*/
+
+/*
+** User styles
+*/
+/* table standards */
+table.rimage {
+	float: right;
+	position: relative;
+	margin-left: 1em;
+	margin-bottom: 1em;
+	text-align: center;
+}
+.toccolours {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+
+/*
+** edit views etc
+*/
+.special li {
+	line-height: 1.4em;
+	margin: 0;
+	padding: 0;
+}
+
+/*
+** keep the whitespace in front of the ^=, hides rule from konqueror
+** this is css3, the validator doesn't like it when validating as css2
+*/
+#bodyContent a.external,
+#bodyContent a.external[href ^="gopher://"] {
+	background: url(external.png) center right no-repeat;
+	padding: 0 13px;
+}
+.rtl #bodyContent a.external,
+.rtl #bodyContent a.external[href ^="gopher://"] {
+	background-image: url(external-rtl.png);
+}
+#bodyContent a.external[href ^="https://"],
+.link-https {
+	background: url(lock_icon.gif) center right no-repeat;
+	padding: 0 16px;
+}
+#bodyContent a.external[href ^="mailto:"],
+.link-mailto {
+	background: url(mail_icon.gif) center right no-repeat;
+	padding: 0 18px;
+}
+#bodyContent a.external[href ^="news://"] {
+	background: url(news_icon.png) center right no-repeat;
+	padding: 0 18px;
+}
+#bodyContent a.external[href ^="ftp://"],
+.link-ftp {
+	background: url(file_icon.gif) center right no-repeat;
+	padding: 0 18px;
+}
+#bodyContent a.external[href ^="irc://"],
+.link-irc {
+	background: url(discussionitem_icon.gif) center right no-repeat;
+	padding: 0 18px;
+}
+#bodyContent a.external[href $=".ogg"], #bodyContent a.external[href $=".OGG"],
+#bodyContent a.external[href $=".mid"], #bodyContent a.external[href $=".MID"],
+#bodyContent a.external[href $=".midi"], #bodyContent a.external[href $=".MIDI"],
+#bodyContent a.external[href $=".mp3"], #bodyContent a.external[href $=".MP3"],
+#bodyContent a.external[href $=".wav"], #bodyContent a.external[href $=".WAV"],
+#bodyContent a.external[href $=".wma"], #bodyContent a.external[href $=".WMA"],
+.link-audio {
+	background: url("audio.png") center right no-repeat;
+	padding: 0 13px;
+}
+#bodyContent a.external[href $=".ogm"], #bodyContent a.external[href $=".OGM"],
+#bodyContent a.external[href $=".avi"], #bodyContent a.external[href $=".AVI"],
+#bodyContent a.external[href $=".mpeg"], #bodyContent a.external[href $=".MPEG"],
+#bodyContent a.external[href $=".mpg"], #bodyContent a.external[href $=".MPG"],
+.link-video {
+	background: url("video.png") center right no-repeat;
+	padding: 0 13px;
+}
+#bodyContent a.external[href $=".pdf"], #bodyContent a.external[href $=".PDF"],
+#bodyContent a.external[href *=".pdf#"], #bodyContent a.external[href *=".PDF#"],
+#bodyContent a.external[href *=".pdf?"], #bodyContent a.external[href *=".PDF?"],
+.link-document {
+	background: url("document.png") center right no-repeat;
+	padding: 0 12px;
+}
+
+/* for rtl wikis */
+.rtl #bodyContent a.external {
+	background-position: left;
+	padding-right: 0;
+}
+.rtl a.feedlink {
+	background-position: right;
+	padding-right: 16px;
+	padding-left: 0;
+}
+
+/* correction for ltr wikis */
+.ltr #bodyContent a.external {
+	padding-left: 0;
+}
+
+/* disable interwiki styling */
+#bodyContent a.extiw,
+#bodyContent a.extiw:active {
+	color: #06c;
+}
+#bodyContent a.external {
+	color: #06c;
+}
+/*
+** Structural Elements
+*/
+
+/*
+** general portlet styles (elements in the quickbar)
+*/
+
+.portlet h5 {
+	display: none;
+}
+
+/*
+** Logo properties
+*/
+
+#p-logo {
+	top: 3.75em;
+	position: absolute; /*needed to use z-index */
+	z-index: 9999;
+	height: 30px;
+	width: 362px;
+	overflow: hidden;
+}
+#p-logo h5 {
+	display: none;
+}
+#p-logo a,
+#p-logo a:hover {
+	display: block;
+	height: 30px;
+	width: 362px;
+	background-repeat: no-repeat;
+	background: url(logo.png);
+	text-indent: -9999px;
+}
+
+/*
+** Search portlet
+*/
+#p-search {
+	position: absolute;
+	top: 3.75em;
+	text-align: right;
+	width: 960px;
+	height: 30px;
+	z-index: 3;
+}
+input.searchButton {
+	margin-top: 1px;
+	font-size: 95%;
+}
+#searchGoButton {
+	padding-left: .5em;
+	padding-right: .5em;
+	font-weight: bold;
+}
+#searchInput {
+	background: #fff;
+	border: 2px solid #ccc;
+	padding: 0.15em;
+}
+
+/*
+** the personal toolbar
+*/
+#p-personal {
+	float: right;
+}
+#p-personal h5 {
+	display: none;
+}
+/* this is the ul contained in the portlet */
+#p-personal ul {
+	list-style: none;
+}
+#socialbar {
+	position: absolute;
+	top: 0;
+	width: 940px;
+	height: 2em;
+	padding: 0 10px;
+	background: #ddd;
+	background: -moz-linear-gradient(top, #eee, #ddd);
+	background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+#socialbar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#socialbar li {
+	float: left;
+	height: 2em;
+	line-height: 2em;
+}
+#socialbar li {
+	border-left: 1px solid #ddd;
+}
+#socialbar li:first-child {
+	border-left: 0;
+}
+#socialbar a {
+	display: block;
+	padding: 0 10px;
+	color: #999;
+}
+#socialbar #p-social {
+	float: left;
+}
+#socialbar #p-f {
+	float: right;
+}
+/* the icon in front of the user name, single quotes
+in bg url to hide it from iemac */
+li#pt-userpage,
+li#pt-anonuserpage,
+li#pt-login {
+	background: url(user.gif) center left no-repeat;
+	padding-left: 10px;
+	text-transform: none;
+}
+#p-personal ul {
+	text-transform: lowercase;
+}
+#p-personal li.active {
+	font-weight: bold;
+}
+/*
+** the page-related actions- page/talk, edit etc
+*/
+/* offsets to distinguish the tab groups */
+#p-cactions ul {
+	list-style: none;
+}
+#p-cactions h5 {
+	display: none;
+}
+#p-cactions .hiddenStructure {
+	display: none;
+}
+#p-cactions li a {
+	text-transform: lowercase;
+}
+
+#p-lang {
+	position: relative;
+	z-index: 3;
+}
+
+/* Override text-transform on languages where capitalization is significant */
+.capitalize-all-nouns .portlet h5,
+.capitalize-all-nouns .portlet h6,
+.capitalize-all-nouns #p-personal ul,
+.capitalize-all-nouns #p-cactions ul li a {
+	text-transform: none;
+}
+
+/* TODO: #t-iscite is only used by the Cite extension, come up with some
+ * system which allows extensions to add to this file on the fly
+ */
+#t-ispermalink, #t-iscite {
+	color: #999;
+}
+/*
+** footer
+*/
+#footer {
+	background-color: white;
+	border-top: 1px solid #666;
+	margin: .6em 0 1em 0;
+	padding: .4em 0 1.2em 0;
+	text-align: center;
+	font-size: 90%;
+}
+#footer ul {
+	list-style: none outside none;
+}
+#footer li {
+}
+#footer a {
+	color: #666;
+	text-decoration: underline;
+}
+#footer-info {
+}
+#footer-info li {
+	color: #666;
+	padding-right: 0.25em;
+}
+#footer-places {
+	text-align: center;
+}
+#footer-places li {
+	display: inline;
+	padding: 0 .75em;
+	color: #666;
+}
+#footer-places li:not(#footer-places-privacy) {
+	border-left: 1px solid #ccc;
+}
+#footer-icons {
+	display: none;
+}
+
+.mw-htmlform-submit {
+	font-weight: bold;
+	padding-left: .3em;
+	padding-right: .3em;
+	margin-right: 2em;
+}
+
+/* js pref toc */
+#preftoc {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	clear: both;
+}
+#preftoc li {
+	background-color: #f0f0f0;
+	color: #000;
+}
+#preftoc li {
+	margin: 1px -2px 1px 2px;
+	float: left;
+	padding: 2px 0 3px 0;
+	border: 1px solid #fff;
+	border-right-color: #716f64;
+	border-bottom: 0;
+	position: relative;
+	white-space: nowrap;
+	list-style-type: none;
+	list-style-image: none;
+	z-index: 3;
+}
+#preftoc li.selected {
+	font-weight: bold;
+	background-color: #f9f9f9;
+	border: 1px solid #aaa;
+	border-bottom: none;
+	cursor: default;
+	top: 1px;
+	padding-top: 2px;
+	margin-right: -3px;
+}
+#preftoc > li.selected {
+	top: 2px;
+}
+#preftoc a,
+#preftoc a:active {
+	display: block;
+	color: #000;
+	padding: 0 .7em;
+	position: relative;
+	text-decoration: none;
+}
+#preftoc li.selected a {
+	cursor: default;
+	text-decoration: none;
+}
+#preferences {
+	margin: 0;
+	border: 1px solid #aaa;
+	clear: both;
+	padding: 1.5em;
+	background-color: #F9F9F9;
+}
+.prefsection {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+.prefsection legend {
+	font-weight: bold;   
+}
+.prefsection table, .prefsection legend {
+	background-color: #F9F9F9;
+}
+.mainLegend {
+	display: none;
+}
+td.htmlform-tip {
+	font-size: x-small;
+	padding: .2em 2em;
+	color: #666;
+}
+
+.preferences-login {
+	clear: both;
+	margin-bottom: 1.5em;
+}
+
+.prefcache {
+	font-size: 90%;
+	margin-top: 2em;
+}
+
+div#userloginForm form,
+div#userlogin form#userlogin2 {
+	margin: 0 3em 1em 0;
+	border: 1px solid #aaa;
+	clear: both;
+	padding: 1.5em 2em;
+	background-color: #f9f9f9;
+	float: left;
+}
+.rtl div#userloginForm form,
+.rtl div#userlogin form#userlogin2 {
+	float: right;
+}
+
+div#userloginForm table,
+div#userlogin form#userlogin2 table {
+	background-color: #f9f9f9;
+}
+
+div#userloginForm h2,
+div#userlogin form#userlogin2 h2 {
+	padding-top: 0;
+}
+
+div#userlogin .captcha,
+div#userloginForm .captcha {
+	border: 1px solid #bbb;
+	padding: 1.5em 2em;
+	background-color: white;
+}
+
+#loginend, #signupend {
+	clear: both;
+}
+
+#userloginprompt, #languagelinks {
+	font-size: 85%;
+}
+
+#login-sectiontip {
+	font-size: 85%;
+	line-height: 1.2;
+	padding-top: 2em;
+}
+
+#userlogin .loginText, #userlogin .loginPassword {
+	width: 12em;
+}
+
+#userloginlink a, #wpLoginattempt, #wpCreateaccount {
+	font-weight: bold;
+}
+.redirectText {
+	font-size: 150%;
+	margin: 5px;
+}
+
+.printfooter {
+	display: none;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<!--Converted with LaTeX2HTML 96.1 (Feb 5, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+
+
+<title>Linear Vehicle Model</title>
+<meta name="description" content="Linear Vehicle Model">
+<meta name="keywords" content="model">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<link rel="STYLESHEET" href="linear_files/model.htm">
+</head><body lang="EN">
+ <br> <p>
+</p><h1><a name="SECTION00030000000000000000">Linear Vehicle Model</a></h1>
+<p>
+The non-linear vehicle model can be linearized by assuming the
+small angle approximation and neglecting the higher order terms.
+If the longitudinal velocity is included as a state, the vehicle
+model becomes non-linear. Therefore, constant longitudinal
+velocity is required to construct a linear vehicle model. It is
+also assumed that the tire behaves linearly in the vehicle model.
+The non-linear tire model involves
+highly non-linear curve fitting of the tire data. However, the
+tire lateral force shows linear increase as the slip angle
+increases up to a certain value. Therefore, the use of the linear equations
+requires maintaining tire slip angle below a certain value. This
+slip angle value is determined by the vertical load on the tire,
+coefficient of friction of the road, and longitudinal slip of the
+tire. Thus, the linear model is valid under constant longitudinal
+speed, constant normal load on tires, constant coefficient of
+friction of the road, and constant longitudinal slip of the tires.
+The purpose of constructing a linear model is for the design a
+controller using the extensive number of algorithms developed for
+linear systems. It is more
+desirable to linearize the vehicle model in real-time to obtain the most 
+accurate representation of the vehicle behavior. However, a fixed linear model 
+is used in this paper for evaluations of certain driving scenarios. Rewriting 
+the non-linear lateral acceleration and yaw angular acceleration, we have
+</p><p><a name="eqvdot">&nbsp;</a> <img alt="equation161" src="linear_files/img43.gif" align="BOTTOM" width="536" height="39"> </p><p>
+</p><p><a name="eqrdot">&nbsp;</a> <img alt="equation177" src="linear_files/img44.gif" align="BOTTOM" width="538" height="42"> </p><p>
+Since the longitudinal velocity of the vehicle is assumed to be
+constant, and aerodynamic drag and rolling resistance are
+neglected, the longitudinal tire forces,  <img alt="tex2html_wrap_inline496" src="linear_files/img45.gif" align="MIDDLE" width="26" height="27">  and  <img alt="tex2html_wrap_inline498" src="linear_files/img46.gif" align="MIDDLE" width="25" height="27"> ,
+become zeros. The small angle assumption reduces the sine and
+cosine terms such that  <img alt="tex2html_wrap_inline500" src="linear_files/img47.gif" align="MIDDLE" width="84" height="29"> ,
+ <img alt="tex2html_wrap_inline502" src="linear_files/img48.gif" align="MIDDLE" width="78" height="29"> ,  <img alt="tex2html_wrap_inline504" src="linear_files/img49.gif" align="MIDDLE" width="81" height="28"> , and
+ <img alt="tex2html_wrap_inline506" src="linear_files/img50.gif" align="MIDDLE" width="77" height="28"> . Therefore, Equation 19 and Equation 20 are simplified as
+</p><p><a name="eqvdots">&nbsp;</a> <img alt="equation201" src="linear_files/img51.gif" align="BOTTOM" width="500" height="39"> </p><p>
+</p><p><a name="eqrdots">&nbsp;</a> <img alt="equation209" src="linear_files/img52.gif" align="BOTTOM" width="500" height="42"> </p><p>
+Operating in their linear region, the linear lateral tire force
+can be calculated from
+</p><p> <img alt="equation217" src="linear_files/img53.gif" align="BOTTOM" width="500" height="21"> </p><p>
+</p><p> <img alt="equation221" src="linear_files/img54.gif" align="BOTTOM" width="500" height="21"> </p><p>
+Where  <img alt="tex2html_wrap_inline508" src="linear_files/img55.gif" align="MIDDLE" width="28" height="29">  and  <img alt="tex2html_wrap_inline510" src="linear_files/img56.gif" align="MIDDLE" width="27" height="28">  are the tire cornering
+stiffnesses for front and rear tires, respectively. The tire
+cornering stiffness is determined by the slop of the linear region
+on the lateral force vs. slip angle plot. The slip angles for
+front and rear wheels,  <img alt="tex2html_wrap_inline512" src="linear_files/img57.gif" align="MIDDLE" width="18" height="19">  and  <img alt="tex2html_wrap_inline512" src="linear_files/img57.gif" align="MIDDLE" width="18" height="19"> , are defined by
+the Equation 11 and Equation 12 with a small
+angle assumption such that
+</p><p><a name="eqafl">&nbsp;</a> <img alt="equation229" src="linear_files/img58.gif" align="BOTTOM" width="500" height="42"> </p><p>
+</p><p><a name="eqarl">&nbsp;</a> <img alt="equation234" src="linear_files/img59.gif" align="BOTTOM" width="500" height="42"> </p><p>
+The complete linear model is found by substituting linearized
+lateral forces,  <img alt="tex2html_wrap_inline516" src="linear_files/img60.gif" align="MIDDLE" width="25" height="27">  and  <img alt="tex2html_wrap_inline518" src="linear_files/img61.gif" align="MIDDLE" width="24" height="27"> , into Equation 21 and Equation 22. Assuming that there is
+no steering on a rear wheel ( <img alt="tex2html_wrap_inline520" src="linear_files/img62.gif" align="MIDDLE" width="49" height="28"> ), the state-space
+representation of the linear vehicle model is written as follows.
+</p><p><a name="eqsslinear">&nbsp;</a> <img alt="equation243" src="linear_files/img63.gif" align="BOTTOM" width="603" height="59"> </p><p>
+The linearized vehicle model is used to include the driver model
+and the controller design.
+</p></body></html>

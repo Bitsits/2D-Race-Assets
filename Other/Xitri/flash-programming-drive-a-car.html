@@ -1,0 +1,1736 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU-lite"><head profile="http://gmpg.org/xfn/11">
+
+  
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Даю порулить - программируем движение автомобиля для флэш-игр | 
+Хитри - блог о хитростях разработки флэш-игр, игровых баннеров и 
+флэш-анимации</title>
+
+        <meta name="author" content="Green gamer">
+	<meta name="generator" content="WordPress 2.3.1"> <!-- leave this for stats -->
+
+   	<link rel="stylesheet" href="flash-programming-drive-a-car_files/style.css" type="text/css" media="screen">
+   	<link rel="alternate" type="application/rss+xml" title="Хитри - блог о хитростях разработки флэш-игр, игровых баннеров и флэш-анимации RSS Feed" href="http://xitri.com/feed">
+	<link rel="pingback" href="http://xitri.com/xmlrpc.php">
+
+		<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://xitri.com/xmlrpc.php?rsd">
+ <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://xitri.com/wp-includes/wlwmanifest.xml"> <script type="text/javascript" src="flash-programming-drive-a-car_files/prototype.js"></script>
+
+<!-- all in one seo pack 1.4.6.3 ob_start_detected [-1,-1] -->
+<meta name="description" content="Много есть флэш-игр, связанных с автомобилями, когда игра ведется от третьего лица при">
+<meta name="keywords" content="actionscript,flash,игры,примеры">
+<!-- /all in one seo pack -->
+
+	<!-- Courtesy of Kimili Flash Embed - Version 1.4 -->
+	<script src="flash-programming-drive-a-car_files/swfobject.js" type="text/javascript"></script>
+
+	<script type="text/javascript" src="flash-programming-drive-a-car_files/share-this.php"></script>
+	<link rel="stylesheet" type="text/css" href="flash-programming-drive-a-car_files/share-this.css">
+	<style type="text/css">#wpcf {width: 400px; border:0px;}
+#wpcf legend { font-weight: bold:padding: 0px }
+#wpcf label { display: block; float: left; text-align: left; xwidth: 140px; padding-right: 10px; font-size: 100% }
+#wpcf p { margin: 0 0 7px 0 }
+#wpcf .field { font-size: 100%; width: 240px; padding: 0; margin: 0 }
+#wpcf p.button { text-align: right; padding: 0 5px 0 0; }
+#wpcf textarea { font-size: 100%; width: 389px; height: 100px }
+#wpcf .error { background-color: #FFFF00 }
+#wpcf .challenge { font-size: 100%; display: inline-block; display: -moz-inline-stack; text-align: left; width: 240px }
+#wpcf p.alert { color:#FF0000; font-weight: 700; text-align: center; padding: 5px 0 10px 0 }</style>  </head><body id="page">
+  
+  <div id="wrapper">
+  <div id="subwrapper">
+		<div id="navigation">
+			<ul>
+				<li class="page_item"><a href="http://xitri.com/">Главная</a></li>
+				<li class="page_item page-item-3"><a href="http://xitri.com/about" title="О сайте">О сайте</a></li>
+<li class="page_item page-item-16"><a href="http://xitri.com/contacts" title="Контакты">Контакты</a></li>
+			</ul>
+		</div>
+		<div id="header">
+			<h1><a href="http://xitri.com/"><b>Хитри</b> - блог о хитростях разработки флэш-игр, игровых баннеров и флэш-анимации</a></h1>
+					</div>
+	<div id="content">
+
+	  		<div class="post" id="post-93">
+  			<h2><a href="http://xitri.com/2008/07/09/flash-programming-drive-a-car.html" title="Ссылка на Даю порулить - программируем движение автомобиля для флэш-игр">Даю порулить - программируем движение автомобиля для флэш-игр</a></h2>
+  						<small>09.07.2008, автор Stormit, рубрики: <a href="http://xitri.com/category/actionscript" title="Просмотреть все записи в ActionScript" rel="category tag">ActionScript</a>,  <a href="http://xitri.com/category/flash-games" title="Просмотреть все записи в Flash игры" rel="category tag">Flash игры</a></small>
+  			<div class="entry">
+  				<p>Много есть флэш-игр, связанных с автомобилями, когда игра 
+ведется от третьего лица при виде сверху. В основном это гонки, где 
+нужно намотать круги и обогнать противников. В таких случаях обычно не 
+учитывают колеса автомобиля и при поворотах, просто поворачивают клип 
+вокруг центра. Это не соответствует правде, но если машину окружить 
+выхлопными газами, пылью и другими эффектами, то&nbsp; этого никто и не 
+заметит. Все потому, что игровой движок не на этом строится.</p>
+<p>Другое дело, если цель игры - припарковать машину или пройти курсы 
+вождения. Тогда без более-менее реальной модели автомобиля (передние 
+колеса задают поворот, а задний мост - ведущий) ничего не получится.</p>
+<p>Решение которое я предлагаю не использует физических законов, по 
+крайней мере я пока об этом не подозреваю,&nbsp; но довольно хорошо 
+имитирует реальное поведение четырехколесного автомобиля с ведущим 
+задним приводом.</p>
+<p><code></code></p><div id="so_targ_auto_control_1124934016" class="flashmovie"><embed type="application/x-shockwave-flash" src="flash-programming-drive-a-car_files/auto_control.swf" id="fm_auto_control_1124934016" name="fm_auto_control_1124934016" quality="high" width="550" height="200"></div>
+
+<script type="text/javascript">
+	// <![CDATA[
+
+	var so_1124934016 = new SWFObject("http://xitri.com/wp-content/uploads/2008/07/auto_control.swf","fm_auto_control_1124934016","550","200","6","","","","","");
+	so_1124934016.write("so_targ_auto_control_1124934016");
+
+	// ]]>
+</script>
+
+<p>Логика здесь такая: автомобиль вначале поворачивается (если передние 
+колеса не смотрят прямо) и едет в этом направлении. Со смещением проблем
+ нет, но вот поворот на правильный угол не давал мне покоя. По логике, 
+скорость поворота прямо пропорциональна поступательной скорости 
+автомобиля и обратно пропорциональна расстоянию между передними и 
+задними колесами. На удивление, этого хватило, и не пришлось подбирать 
+поправочные коэффициенты.<span id="more-93"></span></p>
+<p>Чтобы это проверить, нам нужен подготовленный символ автомобиля. Достаточно иметь 4 колеса и какой-либо каркас.</p>
+<ol>
+<li>Создаем символ <strong>car</strong> и внутри него 2 колеса с именами <strong>left</strong> и <strong>right</strong>.
+ Центр символа car должен находиться строго между задними колесами. Это 
+ВАЖНО. Это та точка, к которой прикладывается сила тяги.</li>
+<li>В той же линейке, где лежит символ <strong>car</strong>, кадром выше пишем код:
+
+<div class="wp_syntax"><div class="code"><pre class="actionscript">speed = <span style="color: rgb(189, 185, 169);">0</span>;
+speedLimit = <span style="color: rgb(189, 185, 169);">8</span>;
+speedStep = .<span style="color: rgb(189, 185, 169);">5</span>;
+rotLimit = <span style="color: rgb(189, 185, 169);">35</span>;
+rotStep = <span style="color: rgb(189, 185, 169);">3</span>;
+processKey = <span style="color: rgb(204, 0, 0); font-weight: normal;">function</span> <span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+	<span style="color: rgb(204, 0, 0);">if</span> <span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(102, 153, 204);">Key</span>.<span style="color: rgb(102, 153, 204);">isDown</span><span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(102, 153, 204);">Key</span>.<span style="color: rgb(102, 153, 204);">LEFT</span><span style="color: rgb(189, 185, 169);">)</span><span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+		<span style="color: rgb(204, 0, 0);">if</span> <span style="color: rgb(189, 185, 169);">(</span>car.<span style="color: rgb(102, 153, 204);">left</span>.<span style="color: rgb(102, 153, 204);">_rotation</span> &gt; -rotLimit<span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+			car.<span style="color: rgb(102, 153, 204);">left</span>.<span style="color: rgb(102, 153, 204);">_rotation</span> = car.<span style="color: rgb(102, 153, 204);">right</span>.<span style="color: rgb(102, 153, 204);">_rotation</span> -= rotStep;
+		<span style="color: rgb(189, 185, 169);">}</span>
+	<span style="color: rgb(189, 185, 169);">}</span> <span style="color: rgb(204, 0, 0);">else</span> <span style="color: rgb(204, 0, 0);">if</span> <span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(102, 153, 204);">Key</span>.<span style="color: rgb(102, 153, 204);">isDown</span><span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(102, 153, 204);">Key</span>.<span style="color: rgb(102, 153, 204);">RIGHT</span><span style="color: rgb(189, 185, 169);">)</span><span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+		<span style="color: rgb(204, 0, 0);">if</span> <span style="color: rgb(189, 185, 169);">(</span>car.<span style="color: rgb(102, 153, 204);">left</span>.<span style="color: rgb(102, 153, 204);">_rotation</span> &lt; rotLimit<span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+			car.<span style="color: rgb(102, 153, 204);">left</span>.<span style="color: rgb(102, 153, 204);">_rotation</span> = car.<span style="color: rgb(102, 153, 204);">right</span>.<span style="color: rgb(102, 153, 204);">_rotation</span> += rotStep;
+		<span style="color: rgb(189, 185, 169);">}</span>
+	<span style="color: rgb(189, 185, 169);">}</span>
+	<span style="color: rgb(204, 0, 0);">if</span> <span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(102, 153, 204);">Key</span>.<span style="color: rgb(102, 153, 204);">isDown</span><span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(102, 153, 204);">Key</span>.<span style="color: rgb(102, 153, 204);">UP</span><span style="color: rgb(189, 185, 169);">)</span><span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+		speed += <span style="color: rgb(189, 185, 169);">(</span>speed &lt; speedLimit<span style="color: rgb(189, 185, 169);">)</span>? speedStep : <span style="color: rgb(189, 185, 169);">0</span>;
+	<span style="color: rgb(189, 185, 169);">}</span> <span style="color: rgb(204, 0, 0);">else</span> <span style="color: rgb(204, 0, 0);">if</span> <span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(102, 153, 204);">Key</span>.<span style="color: rgb(102, 153, 204);">isDown</span><span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(102, 153, 204);">Key</span>.<span style="color: rgb(102, 153, 204);">DOWN</span><span style="color: rgb(189, 185, 169);">)</span><span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+		speed += <span style="color: rgb(189, 185, 169);">(</span>speed &gt; -speedLimit<span style="color: rgb(189, 185, 169);">)</span>? -speedStep : <span style="color: rgb(189, 185, 169);">0</span>;
+	<span style="color: rgb(189, 185, 169);">}</span> <span style="color: rgb(204, 0, 0);">else</span> <span style="color: rgb(189, 185, 169);">{</span>
+		speed += <span style="color: rgb(189, 185, 169);">(</span>speed &lt; <span style="color: rgb(189, 185, 169);">0</span><span style="color: rgb(189, 185, 169);">)</span>? speedStep : <span style="color: rgb(189, 185, 169);">(</span>speed &gt; <span style="color: rgb(189, 185, 169);">0</span><span style="color: rgb(189, 185, 169);">)</span>? -speedStep : <span style="color: rgb(189, 185, 169);">0</span>;
+	<span style="color: rgb(189, 185, 169);">}</span>
+<span style="color: rgb(189, 185, 169);">}</span>;
+<span style="color: rgb(204, 0, 0); font-weight: normal;">function</span> move<span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(189, 185, 169);">)</span><span style="color: rgb(189, 185, 169);">{</span>
+	<span style="color: rgb(204, 0, 0);">if</span><span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(102, 153, 204);">Math</span>.<span style="color: rgb(102, 153, 204);">abs</span><span style="color: rgb(189, 185, 169);">(</span>speed<span style="color: rgb(189, 185, 169);">)</span> &gt; <span style="color: rgb(189, 185, 169);">0</span><span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+		car.<span style="color: rgb(102, 153, 204);">_rotation</span> += car.<span style="color: rgb(102, 153, 204);">left</span>.<span style="color: rgb(102, 153, 204);">_rotation</span> * speed / car.<span style="color: rgb(102, 153, 204);">left</span>.<span style="color: rgb(102, 153, 204);">_x</span>;
+	<span style="color: rgb(189, 185, 169);">}</span>
+	angle = car.<span style="color: rgb(102, 153, 204);">_rotation</span> * <span style="color: rgb(102, 153, 204);">Math</span>.<span style="color: rgb(102, 153, 204);">PI</span> / <span style="color: rgb(189, 185, 169);">180</span>;
+	speedX = speed * <span style="color: rgb(102, 153, 204);">Math</span>.<span style="color: rgb(102, 153, 204);">cos</span><span style="color: rgb(189, 185, 169);">(</span>angle<span style="color: rgb(189, 185, 169);">)</span>;
+	speedY = speed * <span style="color: rgb(102, 153, 204);">Math</span>.<span style="color: rgb(102, 153, 204);">sin</span><span style="color: rgb(189, 185, 169);">(</span>angle<span style="color: rgb(189, 185, 169);">)</span>;
+	car.<span style="color: rgb(102, 153, 204);">_x</span> += speedX;
+	car.<span style="color: rgb(102, 153, 204);">_y</span> += speedY;
+<span style="color: rgb(189, 185, 169);">}</span>
+<span style="color: rgb(102, 153, 204);">onEnterFrame</span> = <span style="color: rgb(204, 0, 0); font-weight: normal;">function</span><span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+	processKey<span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(189, 185, 169);">)</span>;
+	move<span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(189, 185, 169);">)</span>;
+<span style="color: rgb(189, 185, 169);">}</span></pre></div></div>
+
+<p>Я постарался разнести все величины по переменным, так что настроить 
+их под другой тип машины дело не сложное. Замедление с ускорением тоже 
+есть - все как учили <img src="flash-programming-drive-a-car_files/icon_smile.gif" alt=":)" class="wp-smiley"> 
+</p></li><li>Получаем такой результат. Управление осуществляется с клавиатуры - стрелки ←,↑,→,↓.</li>
+<li>Сразу проверим, как это будет работать, если передвинуть передние колеса вперед. Вроде неплохой автобус.</li>
+<li>Небольшой пример из жизни.</li>
+</ol>
+<p>Еще немного о том, как машина исчезает с одной стороны и появляется с другой.<br>
+Я люблю наглядные способы, поэтому зону для маневров будет задавать клип <strong>box</strong>
+ с габаритами, идентичными размеру флэшки. А уже с него я считаю 
+ограничивающие координаты по ширине и по высоте. Тогда в дополнение к 
+вышеизложенному, дописывается такой код:</p>
+
+<div class="wp_syntax"><div class="code"><pre class="actionscript"><span style="color: rgb(102, 153, 204);">WIDTH</span> = zone.<span style="color: rgb(102, 153, 204);">_width</span>;
+<span style="color: rgb(102, 153, 204);">HEIGHT</span> = zone.<span style="color: rgb(102, 153, 204);">_height</span>;
+<span style="color: rgb(102, 153, 204);">LEFT</span> = zone.<span style="color: rgb(102, 153, 204);">_x</span>;
+TOP = zone.<span style="color: rgb(102, 153, 204);">_y</span>;
+<span style="color: rgb(102, 153, 204);">RIGHT</span> = <span style="color: rgb(102, 153, 204);">LEFT</span> + <span style="color: rgb(102, 153, 204);">WIDTH</span>;
+BOTTOM = TOP + <span style="color: rgb(102, 153, 204);">HEIGHT</span>;
+&nbsp;
+checkCycle = <span style="color: rgb(204, 0, 0); font-weight: normal;">function</span> <span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+	bounds = car.<span style="color: rgb(102, 153, 204);">getBounds</span><span style="color: rgb(189, 185, 169);">(</span><span style="color: rgb(102, 153, 204);">this</span><span style="color: rgb(189, 185, 169);">)</span>;
+	boundWidth = bounds.<span style="color: rgb(189, 185, 169);">xMax</span> - bounds.<span style="color: rgb(189, 185, 169);">xMin</span>;
+	boundHeight = bounds.<span style="color: rgb(189, 185, 169);">yMax</span> - bounds.<span style="color: rgb(189, 185, 169);">yMin</span>
+	<span style="color: rgb(204, 0, 0);">if</span><span style="color: rgb(189, 185, 169);">(</span>bounds.<span style="color: rgb(189, 185, 169);">xMax</span> &lt; <span style="color: rgb(102, 153, 204);">LEFT</span><span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+		car.<span style="color: rgb(102, 153, 204);">_x</span> = <span style="color: rgb(102, 153, 204);">RIGHT</span> + car.<span style="color: rgb(102, 153, 204);">_x</span> - bounds.<span style="color: rgb(189, 185, 169);">xMin</span>;
+	<span style="color: rgb(189, 185, 169);">}</span> <span style="color: rgb(204, 0, 0);">else</span> <span style="color: rgb(204, 0, 0);">if</span><span style="color: rgb(189, 185, 169);">(</span>bounds.<span style="color: rgb(189, 185, 169);">xMin</span> &gt; <span style="color: rgb(102, 153, 204);">RIGHT</span><span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+		car.<span style="color: rgb(102, 153, 204);">_x</span> = <span style="color: rgb(102, 153, 204);">LEFT</span> - <span style="color: rgb(189, 185, 169);">(</span>bounds.<span style="color: rgb(189, 185, 169);">xMax</span> - car.<span style="color: rgb(102, 153, 204);">_x</span><span style="color: rgb(189, 185, 169);">)</span>;
+	<span style="color: rgb(189, 185, 169);">}</span>
+	<span style="color: rgb(204, 0, 0);">if</span><span style="color: rgb(189, 185, 169);">(</span>bounds.<span style="color: rgb(189, 185, 169);">yMax</span> &lt; TOP<span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+		car.<span style="color: rgb(102, 153, 204);">_y</span> = BOTTOM + <span style="color: rgb(189, 185, 169);">(</span>car.<span style="color: rgb(102, 153, 204);">_y</span> - bounds.<span style="color: rgb(189, 185, 169);">yMin</span><span style="color: rgb(189, 185, 169);">)</span>;
+	<span style="color: rgb(189, 185, 169);">}</span> <span style="color: rgb(204, 0, 0);">else</span> <span style="color: rgb(204, 0, 0);">if</span><span style="color: rgb(189, 185, 169);">(</span>bounds.<span style="color: rgb(189, 185, 169);">yMin</span> &gt; BOTTOM<span style="color: rgb(189, 185, 169);">)</span> <span style="color: rgb(189, 185, 169);">{</span>
+		car.<span style="color: rgb(102, 153, 204);">_y</span> = TOP - <span style="color: rgb(189, 185, 169);">(</span>bounds.<span style="color: rgb(189, 185, 169);">yMax</span> - car.<span style="color: rgb(102, 153, 204);">_y</span><span style="color: rgb(189, 185, 169);">)</span>;
+	<span style="color: rgb(189, 185, 169);">}</span>
+<span style="color: rgb(189, 185, 169);">}</span>;</pre></div></div>
+
+<p>Теперь эту функцию нужно добавить в вызов по событию <strong>EnterFrame</strong>, после вызова функции <strong>move()</strong>.</p>
+<p>Получается вполне универсальный движок для многих видов транспорта. 
+Но все это сделано чисто интуитивно, а я бы не прочь взглянуть, как это 
+объясняется физикой. Так что если кто-то начертит схему с силами и всеми
+ делами,- милости просим.</p>
+<p class="akpc_pop">Интересно на 31%</p>  			</div>
+		</div>
+		
+	<!--
+	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+				xmlns:dc="http://purl.org/dc/elements/1.1/"
+				xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+			<rdf:Description rdf:about="http://xitri.com/2008/07/09/flash-programming-drive-a-car.html"
+    dc:identifier="http://xitri.com/2008/07/09/flash-programming-drive-a-car.html"
+    dc:title="Даю порулить - программируем движение автомобиля для флэш-игр"
+    trackback:ping="http://xitri.com/2008/07/09/flash-programming-drive-a-car.html/trackback" />
+</rdf:RDF>	-->
+
+	
+<!-- You can start editing here. -->
+<div class="sharethis"><a target="_blank" href="http://xitri.com/?p=93&amp;akst_action=share-this" onclick="akst_share('93', 'http%3A%2F%2Fxitri.com%2F2008%2F07%2F09%2Fflash-programming-drive-a-car.html', '%D0%94%D0%B0%D1%8E+%D0%BF%D0%BE%D1%80%D1%83%D0%BB%D0%B8%D1%82%D1%8C+-+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D1%83%D0%B5%D0%BC+%D0%B4%D0%B2%D0%B8%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5+%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8F+%D0%B4%D0%BB%D1%8F+%D1%84%D0%BB%D1%8D%D1%88-%D0%B8%D0%B3%D1%80'); return false;" title="Поделитесь новостью" id="akst_link_93" class="akst_share_link" rel="nofollow">Хотите почитать позже? Добавьте в социальные сети или закладки</a>
+</div>
+
+	<h3 id="comments">(101) Хитрых на тему «Даю порулить - программируем движение автомобиля для флэш-игр»</h3>
+
+	<ol class="commentlist">
+
+	
+		<li class="alt" id="comment-353">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://animefish.com/" rel="external nofollow">ded pb|xto</a></cite>
+			<small class="commentmetadata"><a href="#comment-353" title="">09.07.2008 в 22:01</a></small>
+						<div class="comment">
+								<p>Вах <img src="flash-programming-drive-a-car_files/icon_smile.gif" alt=":)" class="wp-smiley"> маладэц <img src="flash-programming-drive-a-car_files/icon_smile.gif" alt=":)" class="wp-smiley"></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-358">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Ixifeus</cite>
+			<small class="commentmetadata"><a href="#comment-358" title="">09.07.2008 в 22:44</a></small>
+						<div class="comment">
+								<p>Супер! Спасибо. И как всегда классно оформлена флешка =)</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-359">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Ixifeus</cite>
+			<small class="commentmetadata"><a href="#comment-359" title="">09.07.2008 в 23:01</a></small>
+						<div class="comment">
+								<p>Кто нибудь может разжевать эту сточку<br>
+” speed += (speed  0)? -speedStep : 0; ”<br>
+Просто такую форму записи я вроде ещё не видел</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-360">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-360" title="">09.07.2008 в 23:09</a></small>
+						<div class="comment">
+								<p>Это альтернативный вариант if…else<br>
+Если условие в скобках истинно, то вместо всего этого подставляется 
+значение идущее после вопросительного знака, иначе - после двоеточия.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-362">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Ixifeus</cite>
+			<small class="commentmetadata"><a href="#comment-362" title="">10.07.2008 в 08:17</a></small>
+						<div class="comment">
+								<p>а реально прицеп сзади прикрутить ?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-363">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Hitokiri</cite>
+			<small class="commentmetadata"><a href="#comment-363" title="">10.07.2008 в 08:27</a></small>
+						<div class="comment">
+								<p>Очередной отличный урок! Спасибо! <img src="flash-programming-drive-a-car_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+<p>Про прицеп - очень класный вопрос.</p>
+<p>Если уж пошли такие навороты, можно и дрифт на скорости просчитать! <img src="flash-programming-drive-a-car_files/icon_smile.gif" alt=":)" class="wp-smiley"> Но это уже совсем другие гигабайты кода <img src="flash-programming-drive-a-car_files/icon_smile.gif" alt=":)" class="wp-smiley"></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-364">
+			<div class="post-tip"></div>
+			<cite class="comment-author">GB</cite>
+			<small class="commentmetadata"><a href="#comment-364" title="">10.07.2008 в 08:55</a></small>
+						<div class="comment">
+								<p>Супер, а когда комбайн увидел, вспомнил Вангеров.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-365">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://animefish.com/" rel="external nofollow">ded pb|xto</a></cite>
+			<small class="commentmetadata"><a href="#comment-365" title="">10.07.2008 в 10:02</a></small>
+						<div class="comment">
+								<p>Но с точки зрения реализма (небольшое дополнение) колеса 
+поворачиваться должны на разный угол, т.к. радиусы они описывают при 
+повороте разные (дальнее колесо относительно точки поворота) должно 
+поворачиваться на меньший угол. <img src="flash-programming-drive-a-car_files/icon_smile.gif" alt=":)" class="wp-smiley"> ну это так - если кто будет реалистичное что то творить.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-367">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-367" title="">10.07.2008 в 10:20</a></small>
+						<div class="comment">
+								<p>Придумаю что-нибуть с прицепом <img src="flash-programming-drive-a-car_files/icon_smile.gif" alt=":)" class="wp-smiley"></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-370">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://ladyice.ru/" rel="external nofollow">LadyIce</a></cite>
+			<small class="commentmetadata"><a href="#comment-370" title="">10.07.2008 в 20:30</a></small>
+						<div class="comment">
+								<p>погоняв трактор, стало ясно, что игры в гонки надо делать не вертикальные, а горизонтальные, так интереснее управлять))</p>
+<p>Отличный пример. А траектория практически верна, маленькая неточность - не грех )</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-371">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://www.plancher.ru/" rel="external nofollow">Segas</a></cite>
+			<small class="commentmetadata"><a href="#comment-371" title="">10.07.2008 в 20:37</a></small>
+						<div class="comment">
+								<p>Прикольно, посмотрл подзадумался. Автор молодец одним словом! респект!</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-372">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://www.intelbooks.ru/" rel="external nofollow">Читун</a></cite>
+			<small class="commentmetadata"><a href="#comment-372" title="">11.07.2008 в 13:53</a></small>
+						<div class="comment">
+								<p>Супер! Вот это профессионал! Доделай в игру про парковку. Кстати в IE комментарии съезжают вниз некрасиво.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-373">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-373" title="">11.07.2008 в 14:03</a></small>
+						<div class="comment">
+								<p>А какой у тебя IE?<br>
+У меня в 6-м не съезжают</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-375">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://www.head-phones.ru/" rel="external nofollow">mephi</a></cite>
+			<small class="commentmetadata"><a href="#comment-375" title="">11.07.2008 в 20:18</a></small>
+						<div class="comment">
+								<p>Ай, зачем таким пользоваться а, IE - ну его, юзайте лучеше Оперу или Файрфокс, и наслаждайтесь творениями автора.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-378">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Ixifeus</cite>
+			<small class="commentmetadata"><a href="#comment-378" title="">12.07.2008 в 12:57</a></small>
+						<div class="comment">
+								<p>По поводу дрифта.Нашёл классную игруху<br>
+<a href="http://www.demonfiles.my1.ru/load/7-1-0-198" rel="nofollow">http://www.demonfiles.my1.ru/load/7-1-0-198</a><br>
+осталось тока узнать как это реализовать )))</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-396">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-396" title="">18.07.2008 в 22:47</a></small>
+						<div class="comment">
+								<p>А в этом “дрифте” машина поворачивается по центровой оси =)</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-397">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-397" title="">19.07.2008 в 00:12</a></small>
+						<div class="comment">
+								<p>А можете дать исходник, а то мне ваш трактор сильно понравился? =)</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-398">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://www.free-lance.ru/users/Zloba" rel="external nofollow">Славентий (Zloba)</a></cite>
+			<small class="commentmetadata"><a href="#comment-398" title="">19.07.2008 в 02:50</a></small>
+						<div class="comment">
+								<p>Здорова Стормит  зацини прикол: <a href="http://www.free-lance.ru/blogs/view.php?tr=236455&amp;ord=new" rel="nofollow">http://www.free-lance.ru/blogs/view.php?tr=236455&amp;ord=new</a>
+ Там в середине парню одному ответил зип архивом. Посмотри его))) и 
+обрати внимание на даты) ты кстате никак с этим несвязан? а то уж больно
+ похоже получилось) (зы код да разный))</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-399">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-399" title="">19.07.2008 в 09:02</a></small>
+						<div class="comment">
+								<p>Нет, я никак с этим не связан =)</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-400">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-400" title="">19.07.2008 в 09:05</a></small>
+						<div class="comment">
+								<p>Славентий (Zloba), спасибо конечно, но это не то, о чем я просил =) Мне нужен вот именно этот трактор =)</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-401">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-401" title="">19.07.2008 в 09:21</a></small>
+						<div class="comment">
+								<p>А еще, как можно сделать чтобы следы от машины оставались?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-402">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-402" title="">19.07.2008 в 10:08</a></small>
+						<div class="comment">
+								<p>to Славентий (Zloba)<br>
+нет, не связан, этому комбайну уже несколько лет<br>
+&gt;&gt;Мне нужен вот именно этот трактор =)<br>
+А зачем? Плагиат это плохо, а суть движка и код приведен выше, осталось только обрисовать фото любого трактора при виде сверху.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-403">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-403" title="">19.07.2008 в 10:30</a></small>
+						<div class="comment">
+								<p>&gt;&gt;А еще, как можно сделать чтобы следы от машины оставались<br>
+рисуешь квадратный отпечаток по ширине колеса и дальше либо на 
+EnterFrame (либо когда проехал минимально допустимое расстояние) 
+дублируешь его и ложишь точно под колесом (машине 
+swapDepths(10000000000)). Для остальных колес тоже самое.<br>
+Еще, дублированием (по тому же типу что и огонь), можно сделать и выброс грязи из-под задних колес.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-404">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-404" title="">19.07.2008 в 11:34</a></small>
+						<div class="comment">
+								<p>Stormit, спасибо!</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-405">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-405" title="">19.07.2008 в 11:38</a></small>
+						<div class="comment">
+								<p>А как можно сделать такой дымок, как в тракторе? Я понимаю, 
+что по принципу огня, но непонимаю как привязать дымок в клип с машиной.
+ Я вставляю мувик дымка в машину, а дальше что? Какой код?<br>
+Разжуйте пожалуйста.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-406">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-406" title="">19.07.2008 в 14:51</a></small>
+						<div class="comment">
+								<p>А вот мне нужно впихнуть все это в мувиклип. Что изменить в коде, чтобы он работал?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-408">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-408" title="">20.07.2008 в 11:55</a></small>
+						<div class="comment">
+								<p>Ну, мне кто-то поможет?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-409">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-409" title="">20.07.2008 в 17:34</a></small>
+						<div class="comment">
+								<p>Ало-о!</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-410">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://animefish.com/" rel="external nofollow">ded pb|xto</a></cite>
+			<small class="commentmetadata"><a href="#comment-410" title="">20.07.2008 в 19:19</a></small>
+						<div class="comment">
+								<p>Destroyer - есть ресурсы где разжовывают (чаще форумы). В 
+этом блоге рассказывают о хитростях. Если  Художник нарисовал картину - 
+это не обязывает его рассказывать как он ложит масло на холст. Если тебе
+ так уж хочеться такой трактор - напряги себя и сделай. В этом блоге 
+есть все что бы сделать самостоятельно такой трактор.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-411">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Destroyer</cite>
+			<small class="commentmetadata"><a href="#comment-411" title="">20.07.2008 в 20:42</a></small>
+						<div class="comment">
+								<p>Ну как еще нужно попросить…</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-417">
+			<div class="post-tip"></div>
+			<cite class="comment-author">mainmix</cite>
+			<small class="commentmetadata"><a href="#comment-417" title="">22.07.2008 в 08:29</a></small>
+						<div class="comment">
+								<p>Господа! А мне кажется, что колеса с рулем все-таки должны 
+сами возвращаться в центральное положение во время движения! Так 
+реалистичней!</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-418">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://dmatyukhin.blogspot.com/" rel="external nofollow">Dmitry Matyukhin</a></cite>
+			<small class="commentmetadata"><a href="#comment-418" title="">22.07.2008 в 15:32</a></small>
+						<div class="comment">
+								<p>Да, я тоже заметил что было бы неплохо сделать возвращение 
+колес при движении в зависимости от скорости. То есть, наверное. должно 
+получатся, что колеса должны оставаться под одним углом относительно 
+земли если клавиша “влево” или “вправо” не нажаты.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-421">
+			<div class="post-tip"></div>
+			<cite class="comment-author">KUSAKA</cite>
+			<small class="commentmetadata"><a href="#comment-421" title="">25.07.2008 в 09:19</a></small>
+						<div class="comment">
+								<p>Заметил одну вещь - при повороте скорость машинки сильно возрастает…</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-422">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-422" title="">25.07.2008 в 17:26</a></small>
+						<div class="comment">
+								<p>Занос машины не учитывается. По идее, при повороте на быстрой
+ скорости, машину должно нести по инерции (по касательной к радиусу 
+поворота)</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-424">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-424" title="">25.07.2008 в 17:39</a></small>
+						<div class="comment">
+								<p><b>to Dmitry Matyukhin</b></p>
+<pre style="color: rgb(65, 55, 49);">if(!Key.isDown(Key.LEFT) &amp;&amp; !Key.isDown(Key.RIGHT)) {
+    car.left._rotation = car.right._rotation *= .8 * (speed / speedLimit);
+}
+</pre>
+<p>типа того (нужно еще и к скорости движения привязаться)</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-425">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-425" title="">25.07.2008 в 17:46</a></small>
+						<div class="comment">
+								<p><b>to Destroyer</b><br>
+Дымок так же как и в примере с огнем, остается огненный шлейф за мячиком.<br>
+Не вижу проблем чтобы все это в мувик засунуть. У меня так все и 
+работает. Конкретно, как обернуть несколько слоев в символ описано 
+здесь: <a href="http://xitri.com/2008/05/17/tools-for-flash.html" rel="nofollow">http://xitri.com/2008/05/17/tools-for-flash.html</a></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-467">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Саша юный флешер</cite>
+			<small class="commentmetadata"><a href="#comment-467" title="">30.07.2008 в 19:38</a></small>
+						<div class="comment">
+								<p>спасибо очень круто</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-734">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://5advokatov.ru/" rel="external nofollow">Werewolf</a></cite>
+			<small class="commentmetadata"><a href="#comment-734" title="">05.09.2008 в 20:05</a></small>
+						<div class="comment">
+								<p>Спасибо за статью оказалась очень полезной.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-886">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Maestro</cite>
+			<small class="commentmetadata"><a href="#comment-886" title="">16.09.2008 в 00:09</a></small>
+						<div class="comment">
+								<p>Отличная идея. Сначала пытался сам спрограмировать 
+автомобиль, но потом нашел этот сайт. Идея очень понравилась. Только 
+немножко физики добавил, ну там инерция, автоматическое возвращение 
+колес в исходное положение, занос автомобиля при движении на большой 
+скорости и т.д. Только вот пришлось код писать не на кадре а на самом 
+клипе автомобиля, так как надо было сделать много автомобилей, чтобы код
+ не переписывать для каждого в отдельности.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-2192">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Михаэль</cite>
+			<small class="commentmetadata"><a href="#comment-2192" title="">24.10.2008 в 12:19</a></small>
+						<div class="comment">
+								<p>Здраствуйте Stormit пытался разобрать ваш код но сколько не 
+пробую невыходит (неработает) если вам не сложно немоглибы вы выслать на
+ <a href="mailto:SilverForce@yandex.ru">SilverForce@yandex.ru</a> исходник (рабочий). буду очень благодарен</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-3853">
+			<div class="post-tip"></div>
+			<cite class="comment-author">RuStep</cite>
+			<small class="commentmetadata"><a href="#comment-3853" title="">06.12.2008 в 23:21</a></small>
+						<div class="comment">
+								<p>Здраствуйте! У меня ничего не получилось! <img src="flash-programming-drive-a-car_files/icon_sad.gif" alt=":(" class="wp-smiley">  А не поделитесь исходничком? сюда - <a href="mailto:RuStep@list.ru">RuStep@list.ru</a></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-3855">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-3855" title="">07.12.2008 в 00:07</a></small>
+						<div class="comment">
+								<p>Исходники потерялись, но могу подсказать, если скажете с 
+какого момента перестало получаться (какие переменные становятся 
+undefined и т.д.).</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-3878">
+			<div class="post-tip"></div>
+			<cite class="comment-author">RuStep</cite>
+			<small class="commentmetadata"><a href="#comment-3878" title="">07.12.2008 в 22:37</a></small>
+						<div class="comment">
+								<p>Дело в том, что сам “car” и колёса я сделал! Но вот когда вставляю в это кадр код  - он не работает! Не пойму в чём проблема!</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-3879">
+			<div class="post-tip"></div>
+			<cite class="comment-author">RuStep</cite>
+			<small class="commentmetadata"><a href="#comment-3879" title="">07.12.2008 в 22:45</a></small>
+						<div class="comment">
+								<p>плохо что нет исходника, а вы не могли бы составить его по уроку?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-3881">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-3881" title="">07.12.2008 в 22:59</a></small>
+						<div class="comment">
+								<p>Если компилятор не выдаёт никаких ошибок, пройдитесь по коду и
+ проверьте функцией trace(), какие переменные становятся NaN, null или 
+undefined. Там и нужно искать причину.<br>
+В первую очередь, стоит проверить видны ли сами символы машины и колёс в коде.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-3882">
+			<div class="post-tip"></div>
+			<cite class="comment-author">RuStep</cite>
+			<small class="commentmetadata"><a href="#comment-3882" title="">07.12.2008 в 23:15</a></small>
+						<div class="comment">
+								<p>Извините но в AS я не особый мастер :), поэтому не очень 
+понимаю что вы написали, но всё же прошёлся по коду - нашёл эти элементы
+ в коде, то есть они там присутствуют!</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-5432">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Алик</cite>
+			<small class="commentmetadata"><a href="#comment-5432" title="">14.01.2009 в 23:11</a></small>
+						<div class="comment">
+								<p>Вы уж меня извините что я подряд пишу, но система 
+комментариев обрезает код, а я подумал что я ошибся. Немогу сюда 
+вставить то что хочу. Вобщем действие в else после после key.DOWN.<br>
+Модеры удалите плиз все лишнее что наговорил <img src="flash-programming-drive-a-car_files/icon_biggrin.gif" alt=":D" class="wp-smiley"></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-5572">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-5572" title="">18.01.2009 в 12:15</a></small>
+						<div class="comment">
+								<pre style="color: rgb(65, 55, 49);">if (Key.isDown(Key.UP)) {
+	speed += (speed &lt; speedLimit)? speedStep : 0;
+} else if (Key.isDown(Key.DOWN)) {
+	speed += (speed &gt; -speedLimit)? -speedStep : 0;
+} else {
+	speed += (speed &lt; 0)? speedStep : (speed &gt; 0)? -speedStep : 0;
+}
+</pre>
+<p>Если клавиша “UP” нажата, то скорость увеличивается (но не больше 
+speedLimit), если “DOWN” - уменьшается (но не меньше -speedLimit), иначе
+ - скорость постепенно падает до нуля (прибавляется или вычитается в 
+зависимости от знака).</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-12432">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Iron Man</cite>
+			<small class="commentmetadata"><a href="#comment-12432" title="">09.05.2009 в 10:51</a></small>
+						<div class="comment">
+								<p>у меня нечего не вышло :(((</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-14006">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://dark-oren.ru/" rel="external nofollow">Лаки</a></cite>
+			<small class="commentmetadata"><a href="#comment-14006" title="">29.05.2009 в 16:41</a></small>
+						<div class="comment">
+								<p>С дымом тоже не понял. Помещаю его в клип с машиной и он “не тянется”. Просто дымик “внутри” машины.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-14149">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://dark-oren.ru/" rel="external nofollow">Лаки</a></cite>
+			<small class="commentmetadata"><a href="#comment-14149" title="">01.06.2009 в 08:52</a></small>
+						<div class="comment">
+								<p>Сделал автоматический возврат колёс в исходное положение, 
+снижение скорости при повороте. Делаю заносы, ручник, следы при 
+торможении.<br>
+Я в AS не профи, но пока всё получается. Но с дымом так и не разобрался.<br>
+Если клип (объект) внутри другого клипа, его координаты (и вообще его 
+бытие) относительны родительского клипа? Т.е. не удивительно, что клубья
+ дыма копируются внутри машины. Как сделать, чтобы дым коптил с нужной 
+точки автомобиля?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-14153">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-14153" title="">01.06.2009 в 10:28</a></small>
+						<div class="comment">
+								<p>Помести внутри символа с машинкой невидимый символ (помести 
+его центр на выхлопную трубу). Потом, при помощи методов localToGlobal()
+ и globalToLocal() пересчитывай координаты этого символа в тот timeline 
+где лежит машина и клип дыма. Дальше дублируй клип дыма и помещай в 
+полученные координаты.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-14154">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://dark-oren.ru/" rel="external nofollow">Лаки</a></cite>
+			<small class="commentmetadata"><a href="#comment-14154" title="">01.06.2009 в 10:48</a></small>
+						<div class="comment">
+								<p>Спасибо, Stormit! Просто не знал эти методы.<br>
+Машинка задымила, а теперь еще больше люблю этот бложик <img src="flash-programming-drive-a-car_files/icon_biggrin.gif" alt=":-D" class="wp-smiley"></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-14931">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Albert</cite>
+			<small class="commentmetadata"><a href="#comment-14931" title="">17.06.2009 в 00:27</a></small>
+						<div class="comment">
+								<p>Nice tutorial.<br>
+I try your tutorial everything is fine, but i want to add collision 
+detection against wall and bounce back but no idea where to start ?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-14991">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-14991" title="">18.06.2009 в 00:21</a></small>
+						<div class="comment">
+								<p>You can place 8 or more point clips in the car and arrange 
+them on perimetre and check collision with hitTest() function. After 
+that, return the car to the previous position and rotate around collided
+ point. I didn’t do it but I think similar way.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-16961">
+			<div class="post-tip"></div>
+			<cite class="comment-author">DarkSnow</cite>
+			<small class="commentmetadata"><a href="#comment-16961" title="">03.08.2009 в 22:28</a></small>
+						<div class="comment">
+								<p>Спасибо очень класно! Stormit могли бы вы идейки подкинуть, 
+насчет заноса и вращение машины волчком (если сильно занесет), а то 
+неполучается что-то</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-17271">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Артур</cite>
+			<small class="commentmetadata"><a href="#comment-17271" title="">11.08.2009 в 22:02</a></small>
+						<div class="comment">
+								<p>я во флеше не очень хорошо разбираюсь. но не могли бы вы мне 
+прислать код того, чтобы когда авто попадало на определенныю територию 
+её скорость менялась</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-17469">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-17469" title="">16.08.2009 в 22:01</a></small>
+						<div class="comment">
+								<p>Пробуйте hitTest()<br>
+Если координаты 4-х колёс совпадают с вашей зоной, уменьшайте скорость. 
+Так будет даже круче - чем больше колёс в штрафной зоне - тем медленней 
+едет машинка.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-19511">
+			<div class="post-tip"></div>
+			<cite class="comment-author">maaboo</cite>
+			<small class="commentmetadata"><a href="#comment-19511" title="">06.10.2009 в 15:21</a></small>
+						<div class="comment">
+								<p>А как бы сделать чтобы привод можно было передвинуть? Или 
+сделать полноприводную? Это какой-то оффсет надо класть, не могу 
+сообразить куда.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-20292">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Anj</cite>
+			<small class="commentmetadata"><a href="#comment-20292" title="">02.11.2009 в 15:07</a></small>
+						<div class="comment">
+								<p>Здравствуйте Stormit у меня к вам вопрос при изменении 
+параметра SpeedStep авто неприобретает состояния “покоя” тоесть флешка 
+всегда в движении, как это можно поправить? пытался прописывать нечто 
+вроде “если скорость меньше 1 то присваиваем ей значение 0″ но видать 
+невте дебри лезу…</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-20866">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Moroz777</cite>
+			<small class="commentmetadata"><a href="#comment-20866" title="">16.11.2009 в 06:32</a></small>
+						<div class="comment">
+								<p>Пробывал сделать…выдал=&gt; **Error** Scene=Scene 1, 
+layer=Layer 1, frame=1:Line 1: Statement must appear within 
+on/onClipEvent handler<br>
+     speed = 0;</p>
+<p>**Error** Scene=Scene 1, layer=Layer 1, frame=1:Line 2: Statement must appear within on/onClipEvent handler<br>
+     speedLimit = 8;</p>
+<p>**Error** Scene=Scene 1, layer=Layer 1, frame=1:Line 3: Statement must appear within on/onClipEvent handler<br>
+     speedStep = .5;</p>
+<p>**Error** Scene=Scene 1, layer=Layer 1, frame=1:Line 4: Statement must appear within on/onClipEvent handler<br>
+     rotLimit = 35;</p>
+<p>**Error** Scene=Scene 1, layer=Layer 1, frame=1:Line 5: Statement must appear within on/onClipEvent handler<br>
+     rotStep = 3;</p>
+<p>**Error** Scene=Scene 1, layer=Layer 1, frame=1:Line 6: Statement must appear within on/onClipEvent handler<br>
+     processKey = function () {</p>
+<p>**Error** Scene=Scene 1, layer=Layer 1, frame=1:Line 24: Statement must appear within on/onClipEvent handler<br>
+     function move(){</p>
+<p>**Error** Scene=Scene 1, layer=Layer 1, frame=1:Line 34: Statement must appear within on/onClipEvent handler<br>
+     onEnterFrame = function() {</p>
+<p>Total ActionScript Errors: 8 	 Reported Errors: 8<br>
+подскажите как исправить?…плиз!!!</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-20867">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Moroz777</cite>
+			<small class="commentmetadata"><a href="#comment-20867" title="">16.11.2009 в 06:38</a></small>
+						<div class="comment">
+								<p>….или поделитесь исходником=&gt; <a href="mailto:morozov-dedulya@mail.ru">morozov-dedulya@mail.ru</a></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-21124">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Пит</cite>
+			<small class="commentmetadata"><a href="#comment-21124" title="">23.11.2009 в 11:00</a></small>
+						<div class="comment">
+								<p>У меня такая же ошибка как у Moroz777. Что за шляпа? =( Подскажите</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-22016">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Grinder13</cite>
+			<small class="commentmetadata"><a href="#comment-22016" title="">14.12.2009 в 10:22</a></small>
+						<div class="comment">
+								<p>Люди!я в ActionScript вообще ничего не понимаю,а научиться блин хочется!<br>
+Я вот по какому вопросу…вы не могли бы написать код(ну или написать че 
+нужно исправить)чтоб как в самых обычных гонках нажатие вправо-поворот 
+направо нажатие влево…Пожалуйста напишите!!!!а то я вообще не знаю где 
+еще мона это посмотреть!!!!!</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-22844">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Nikolaus</cite>
+			<small class="commentmetadata"><a href="#comment-22844" title="">31.12.2009 в 14:26</a></small>
+						<div class="comment">
+								<p>а как зделать границу, за которую машина заехать не может? и бокс для парковки, чтоб игру полноценную создать.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-22857">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">Stormit</a></cite>
+			<small class="commentmetadata"><a href="#comment-22857" title="">31.12.2009 в 23:25</a></small>
+						<div class="comment">
+								<p><b>to Nikolaus</b><br>
+car._x += speedX;<br>
+car._y += speedY;<br>
+Вот тут делайте проверку. Если координата выходит за пределы зоны, то её не менять.<br>
+Бокс для парковки проще всего проверять на hitTest() по колёсам.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-22909">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Nikolaus</cite>
+			<small class="commentmetadata"><a href="#comment-22909" title="">02.01.2010 в 16:29</a></small>
+						<div class="comment">
+								<p>и куда это вставлять? да, и как сделать границу, за которую 
+машина заехать не может? Можно как нибудь типо создать символ “graniza” и
+ при наезжании на него символа “car” игра  переходила на другой кадр?<br>
+P.S.мой id7418368 атор этого всего, если не трудно добавься в друзья, но только с пометкой “флэш”</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-23055">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://www.in-finity.ru/" rel="external nofollow">In-Finity</a></cite>
+			<small class="commentmetadata"><a href="#comment-23055" title="">07.01.2010 в 16:17</a></small>
+						<div class="comment">
+								<p>Спасибо за урок. Утащил к себе код частично. (:<br>
+Давно хотел такую штуку сделать - знакомым начинающим водителям практиковаться.<br>
+Там небольшая поправка только.<br>
+В описании ко второй части кода - там зону для манёвров создаёт не клип BOX а клип ZONE.<br>
+Ещё раз спасиба.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-23902">
+			<div class="post-tip"></div>
+			<cite class="comment-author">terminator200911</cite>
+			<small class="commentmetadata"><a href="#comment-23902" title="">11.02.2010 в 08:03</a></small>
+						<div class="comment">
+								<p>Здраствуйте! Пробывал машину сделать,но не получилось код не 
+работает и выдает ошибку А не сделаете исходник для скачки, чтобы 
+посмотреть что не так сделал? А то хочется чтобы все таки машина 
+ездила!!! или скиньте мне на email <a href="mailto:terminator200911@mail.ru">terminator200911@mail.ru</a></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-23909">
+			<div class="post-tip"></div>
+			<cite class="comment-author">terminator200911</cite>
+			<small class="commentmetadata"><a href="#comment-23909" title="">11.02.2010 в 23:37</a></small>
+						<div class="comment">
+								<p>Statement must appear within on/onClipEvent handler   speed = 0;<br>
+Statement must appear within on/onClipEvent handler   speedLimit = 8;<br>
+Statement must appear within on/onClipEvent handler   speedStep = .5;<br>
+Statement must appear within on/onClipEvent handler   rotLimit = 35;<br>
+Statement must appear within on/onClipEvent handler   rotStep = 3;<br>
+Statement must appear within on/onClipEvent handler   processKey = function () {<br>
+Statement must appear within on/onClipEvent handler  function move(){<br>
+Statement must appear within on/onClipEvent handler  onEnterFrame = function() {</p>
+<p>Помогите, машину сделал и выдает ошибку!!! что делать и как исправить машина мертвым грузом стоит!!!</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-23967">
+			<div class="post-tip"></div>
+			<cite class="comment-author">terminator200911</cite>
+			<small class="commentmetadata"><a href="#comment-23967" title="">15.02.2010 в 23:21</a></small>
+						<div class="comment">
+								<p>Народ машина назад в перед едит,а вот калеса не поворачивают что мне делать?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-24971">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Corsar2232</cite>
+			<small class="commentmetadata"><a href="#comment-24971" title="">26.02.2010 в 16:12</a></small>
+						<div class="comment">
+								<p>Спасибо за идею! Незнаю почему но только чтобы у меня все 
+работало норм на AS2 пришлось несколько переработать ваш код. Кому нужен
+ исходник вот моя почта <a href="mailto:corsar-2232@rambler.ru">corsar-2232@rambler.ru</a></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-25689">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Кирилл</cite>
+			<small class="commentmetadata"><a href="#comment-25689" title="">13.03.2010 в 15:51</a></small>
+						<div class="comment">
+								<p>Stormit а как можно сделать что бы если машина встала в определёную зону он<br>
+переходил на следущий кадр</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-26147">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/2008/07/09/flash-programming-drive-a-car.html#more-93" rel="external nofollow">Сашка</a></cite>
+			<small class="commentmetadata"><a href="#comment-26147" title="">05.04.2010 в 16:40</a></small>
+						<div class="comment">
+								<p>я не не понял куда вписывать скрипт ?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-26149">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Денис</cite>
+			<small class="commentmetadata"><a href="#comment-26149" title="">05.04.2010 в 17:24</a></small>
+						<div class="comment">
+								<p>Подскажите пожалуйста почему у меня колеса поворачивается не по центру а с угла?</p>
+<p><a href="http://dmhope.ru/mycar.swf" rel="nofollow">http://dmhope.ru/mycar.swf</a></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-26155">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Moroz777</cite>
+			<small class="commentmetadata"><a href="#comment-26155" title="">05.04.2010 в 22:34</a></small>
+						<div class="comment">
+								<p>onEnterFrame = function() {<br>
+	processKey();<br>
+	move();<br>
+погдскажите зачем это здесь?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-26156">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Денис</cite>
+			<small class="commentmetadata"><a href="#comment-26156" title="">05.04.2010 в 23:05</a></small>
+						<div class="comment">
+								<p>Все просто и гениально. Автор огромное спасибо за урок.<br>
+Вот моя реализация.</p>
+<p><a href="http://dmhope.ru/flash/mycar2.swf" rel="nofollow">http://dmhope.ru/flash/mycar2.swf</a></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-26162">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/2008/07/09/flash-programming-drive-a-car.html#more-93" rel="external nofollow">Сашка</a></cite>
+			<small class="commentmetadata"><a href="#comment-26162" title="">06.04.2010 в 13:35</a></small>
+						<div class="comment">
+								<p>В той же линейке, где лежит символ car, кадром выше пишем код как это понять ???</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-26166">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://dmhope.ru/" rel="external nofollow">Денис</a></cite>
+			<small class="commentmetadata"><a href="#comment-26166" title="">06.04.2010 в 14:55</a></small>
+						<div class="comment">
+								<p>Сашка, Добавь новый слой и в нем в первом фрейме пиши код.</p>
+<p><a href="http://s52.radikal.ru/i137/1004/a6/452d02a8a3ae.png" rel="nofollow">http://s52.radikal.ru/i137/1004/a6/452d02a8a3ae.png</a></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-26199">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Сашка</cite>
+			<small class="commentmetadata"><a href="#comment-26199" title="">07.04.2010 в 17:11</a></small>
+						<div class="comment">
+								<p>ок спс попробую )</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-26200">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Сашка</cite>
+			<small class="commentmetadata"><a href="#comment-26200" title="">07.04.2010 в 17:30</a></small>
+						<div class="comment">
+								<p>а писать в муве или нет ?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-26201">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Сашка</cite>
+			<small class="commentmetadata"><a href="#comment-26201" title="">07.04.2010 в 17:33</a></small>
+						<div class="comment">
+								<p>блин не получается я просто мало знаю чего во флеше ((</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-26204">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Денис</cite>
+			<small class="commentmetadata"><a href="#comment-26204" title="">07.04.2010 в 17:47</a></small>
+						<div class="comment">
+								<p>Сайшка, что именно не получилось?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-26213">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Moroz777</cite>
+			<small class="commentmetadata"><a href="#comment-26213" title="">08.04.2010 в 00:32</a></small>
+						<div class="comment">
+								<p>ёмаё у мну тож палучилось))) <a href="http://my.mail.ru/mail/morozov-dedulya/app-canvas?appid=460207" rel="nofollow">http://my.mail.ru/mail/morozov-dedulya/app-canvas?appid=460207</a></p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-26215">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Moroz777</cite>
+			<small class="commentmetadata"><a href="#comment-26215" title="">08.04.2010 в 00:47</a></small>
+						<div class="comment">
+								<p>Сашка, кщё важно кадры подписать!!..а не только мувики))</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-26216">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Moroz777</cite>
+			<small class="commentmetadata"><a href="#comment-26216" title="">08.04.2010 в 00:53</a></small>
+						<div class="comment">
+								<p>…ой, наврал!..кароче в панельке properties не забудь вписать имена</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-26235">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Сашка</cite>
+			<small class="commentmetadata"><a href="#comment-26235" title="">08.04.2010 в 15:20</a></small>
+						<div class="comment">
+								<p>извиняюсь, а какие именно имена ?))</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-26236">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Сашка</cite>
+			<small class="commentmetadata"><a href="#comment-26236" title="">08.04.2010 в 15:21</a></small>
+						<div class="comment">
+								<p>точнее как назвать их</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-26243">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Pocifik</cite>
+			<small class="commentmetadata"><a href="#comment-26243" title="">08.04.2010 в 19:07</a></small>
+						<div class="comment">
+								<p>Не могу понять как сделать символ, по подробее сам символ 
+создал в него поместил символы left и right а как поместить его в 
+монтажный кадр, кто нить может дать исходник</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-26283">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Сашка</cite>
+			<small class="commentmetadata"><a href="#comment-26283" title="">10.04.2010 в 14:43</a></small>
+						<div class="comment">
+								<p>ктонить дайте исходник плиз</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-27961">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://dark-oren.ru/" rel="external nofollow">Лаки</a></cite>
+			<small class="commentmetadata"><a href="#comment-27961" title="">03.07.2010 в 13:58</a></small>
+						<div class="comment">
+								<p>Пытаюсь придумать занос и следы от колёс.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-30994">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Liklik</cite>
+			<small class="commentmetadata"><a href="#comment-30994" title="">10.09.2010 в 16:51</a></small>
+						<div class="comment">
+								<p>Может тупой вопрос, но как поставить центр символа car посередине колес?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-31083">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Dan4ez</cite>
+			<small class="commentmetadata"><a href="#comment-31083" title="">13.09.2010 в 14:50</a></small>
+						<div class="comment">
+								<p>Огромное спасибо!<br>
+Хотел сделать нечто подобное на box2d, но увидев это, просто портировал 
+на AS3! Не жрет ресурсов и выглядит вполне ничего для моих нужд.</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-31291">
+			<div class="post-tip"></div>
+			<cite class="comment-author"><a href="http://xitri.com/" rel="external nofollow">alek</a></cite>
+			<small class="commentmetadata"><a href="#comment-31291" title="">18.09.2010 в 11:53</a></small>
+						<div class="comment">
+								<p>парни дайте ссылку чтобы скачать исходник</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-31343">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Tanya</cite>
+			<small class="commentmetadata"><a href="#comment-31343" title="">21.09.2010 в 09:01</a></small>
+						<div class="comment">
+								<p>Как  сделать  занос?</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-31344">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Tanya</cite>
+			<small class="commentmetadata"><a href="#comment-31344" title="">21.09.2010 в 09:04</a></small>
+						<div class="comment">
+								<p>Хочется программный код посмотреть. У меня пока не получается…</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-31352">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Maxim</cite>
+			<small class="commentmetadata"><a href="#comment-31352" title="">21.09.2010 в 15:37</a></small>
+						<div class="comment">
+								<p>Спасибо большое автору,как раз для flash-сайта делаю вид в стиле gta2,так намного реалистичнее чем было до этого!</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-32340">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Денис</cite>
+			<small class="commentmetadata"><a href="#comment-32340" title="">20.10.2010 в 19:29</a></small>
+						<div class="comment">
+								<p>Извините за то,что я туплю…третий день в этой теме…создавал до этого движение автомобиля без движения передних колёс на AS3.<br>
+У меня вопрос это какой AS???<br>
+И можно второй шаг расписать поподробнее,вот я создал  символы “car”  ,”left”, “right”<br>
+нужно ли группировать объекты (ctrl+G) ??? и в каком месте их нужно ставить вместе в первом кадре или в файле “car” ???<br>
+Заранее огромное спасибо!<br>
+P.S. а можно исходник??? =)</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-32396">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Денис</cite>
+			<small class="commentmetadata"><a href="#comment-32396" title="">21.10.2010 в 20:11</a></small>
+						<div class="comment">
+								<p>всё,поехала,теперь проблемы с поворотом колёс,но это разберусь =)</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="" id="comment-32933">
+			<div class="post-tip"></div>
+			<cite class="comment-author">Tanya</cite>
+			<small class="commentmetadata"><a href="#comment-32933" title="">30.10.2010 в 19:20</a></small>
+						<div class="comment">
+								<p>Но на трассе машинкой трудно управлять. Она носом вертит влево-вправо</p>
+							</div>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-33642">
+			<div class="post-tip"></div>
+			<cite class="comment-author">K2</cite>
+			<small class="commentmetadata"><a href="#comment-33642" title="">17.11.2010 в 16:54</a></small>
+						<div class="comment">
+								<p>как машина исчезает с одной стороны и появляется с другой. у меня не получается вставляю код<br>
+а car уежает за пределы может чтото с кодом???? box  =  bounds???? или я ошибаюсь<br>
+И если не сложно повтарите что на что заменить чтоб колеса возвращальсь в исходное положение автоматически!!!</p>
+							</div>
+		</li>
+
+	
+	
+	</ol>
+
+ 
+
+
+<h3 id="respond">Оставить комментарий</h3>
+
+
+<form action="http://xitri.com/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input name="author" id="author" size="22" tabindex="1" type="text">
+<label for="author"><small>Имя (обязательно)</small></label></p>
+
+<p><input name="email" id="email" size="22" tabindex="2" type="text">
+<label for="email"><small>E-mail (не публикуется) (обязательно)</small></label></p>
+
+<p><input name="url" id="url" size="22" tabindex="3" type="text">
+<label for="url"><small>Сайт</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> Вы можете использовать эти теги: &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;code&gt; &lt;em&gt; &lt;i&gt; &lt;strike&gt; &lt;strong&gt; </small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input class="submitcomment" name="submit" id="submit" tabindex="5" value="Отправить" type="submit">
+<input name="comment_post_ID" value="93" type="hidden">
+</p>
+<input id="sk2_my_js_check1" name="sk2_my_js_check1" value="sca18k7e1l" type="hidden">
+<input id="sk2_my_js_check2" name="sk2_my_js_check2" value="14b87d419fc429a9d53a9b59f520cf42" type="hidden">
+<script type="text/javascript">
+<!--
+	document.write('<input type="hidden" id="sk2_my_js_payload" name="sk2_my_js_payload" value="');
+	document.write(Math.round ( Math.abs(((((Math.round ( Math.abs(Math.round ( Math.abs((1 + Math.round( Math.abs(100*Math.sin(41)) ) ) / 6)) % 29)) + 31) * 16) + Math.round( Math.abs(100*Math.sin(16)) ) ) * 20))));
+	document.write('" />');
+-->
+</script><input id="sk2_my_js_payload" name="sk2_my_js_payload" value="11460" type="hidden">
+<input id="sk2_time" name="sk2_time" value="1290422655" type="hidden"><input id="sk2_ip" name="sk2_ip" value="117.254.83.22" type="hidden"><input id="sk2_payload" name="sk2_payload" value="e3d5c03f94bdb4ff65a7d8b1ec5715bf" type="hidden">
+
+	<p style="clear: both;" class="subscribe-to-comments">
+	<input name="subscribe" id="subscribe" value="subscribe" style="width: auto;" type="checkbox">
+	<label for="subscribe">Держать меня в курсе дела</label>
+	</p>
+
+
+
+</form>
+
+
+
+	
+	</div>
+
+		<div id="sidebar">
+
+			<ul>
+					<li id="text-1" class="widget widget_text">			<h2 class="widgettitle">Хитри каждый день!</h2>
+			<div class="textwidget">Собранные здесь трюки, хитрости и уловки 
+позволяют решать “малой кровью” достаточно сложные задачи. Если вы 
+делаете игру, баннер или flash открытку, попробуйте “сХитрить” и 
+результат будет на высоте :)</div>
+		</li>
+		<li id="search" class="widget widget_search">			<h2 class="widgettitle">Πouck</h2>
+			<form id="searchform" method="get" action="http://xitri.com">
+			<div>
+			<input name="s" id="s" size="15" type="text">
+			<input id="searchsubmitside" value="Найти" type="submit">
+			</div>
+			</form>
+		</li>
+		<li id="text-4" class="widget widget_text">						<div class="textwidget"><a target="_blank" href="http://flashgamm.com/" title="Встреча разработчиков flash игр"><img alt="Flashgamm logo" src="flash-programming-drive-a-car_files/flashgamm_logo.gif" border="0"></a>
+<a target="_blank" href="http://fpug.org.ua/" title="Ukrainian Adobe Flash Platform User Group"><img alt="UAFPUG logo" src="flash-programming-drive-a-car_files/uafpug_logo.gif" border="0"></a>
+</div>
+		</li>
+<li id="categories-1" class="widget widget_categories"><h2 class="widgettitle">Рубрики</h2>
+		<ul>
+			<li class="cat-item cat-item-6"><a href="http://xitri.com/category/actionscript" title="Особенности написания кода, игровые движки, ООП, оптимизация кода, AS, AS2, AS3">ActionScript</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://xitri.com/category/flash-games" title="Все о флэш играх">Flash игры</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://xitri.com/category/animation" title="Хитрости и особенности твининга и покадровой анимации">Анимация</a>
+</li>
+	<li class="cat-item cat-item-19"><a href="http://xitri.com/category/vse-ostalnoe" title="Просмотреть все записи в рубрике Все остальное">Все остальное</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://xitri.com/category/game-banners" title="Все что помогает созданию эффектных игровых баннеров">Игровые баннеры</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="http://xitri.com/category/lyudi" title="Просмотреть все записи в рубрике Люди">Люди</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://xitri.com/category/news" title="Новости флэш-технологий помогающие в разработке игр, баннеров, анимации и эффектов.">Новости</a>
+</li>
+		</ul>
+</li>
+		<li id="text-2" class="widget widget_text">			<h2 class="widgettitle">Подписка</h2>
+			<div class="textwidget"><a href="http://feeds.feedburner.com/xitri" title="RSS подписка на статьи" class="rss">статьи</a>
+<a href="http://feeds.feedburner.com/xitri-comments" title="RSS подписка на комментарии" class="rsscomment">комментарии</a>
+<a class="rsstoemail" href="http://www.rss2email.ru/?rss=http://feeds.feedburner.com/xitri" title="Получать RSS-ленту на почту"><img src="flash-programming-drive-a-car_files/rsstoemailbtn.gif" border="0"></a></div>
+		</li>
+<li id="tag_cloud" class="widget widget_tag_cloud"><h2 class="widgettitle">Метки</h2>
+<a href="http://xitri.com/tag/actionscript" class="tag-link-6" title="27 записей" rel="tag" style="font-size: 13.4328pt;">ActionScript</a>
+<a href="http://xitri.com/tag/as3" class="tag-link-33" title="2 записей" rel="tag" style="font-size: 8.20895pt;">AS3</a>
+<a href="http://xitri.com/tag/casualconnect" class="tag-link-35" title="1 записей" rel="tag" style="font-size: 8pt;">CasualConnect</a>
+<a href="http://xitri.com/tag/flash" class="tag-link-8" title="68 записей" rel="tag" style="font-size: 22pt;">flash</a>
+<a href="http://xitri.com/tag/flashgamm" class="tag-link-32" title="1 записей" rel="tag" style="font-size: 8pt;">flashgamm</a>
+<a href="http://xitri.com/tag/uafpug" class="tag-link-31" title="1 записей" rel="tag" style="font-size: 8pt;">uafpug</a>
+<a href="http://xitri.com/tag/animaciya" class="tag-link-30" title="27 записей" rel="tag" style="font-size: 13.4328pt;">анимация</a>
+<a href="http://xitri.com/tag/banner" class="tag-link-11" title="28 записей" rel="tag" style="font-size: 13.6418pt;">баннер</a>
+<a href="http://xitri.com/tag/igry" class="tag-link-20" title="45 записей" rel="tag" style="font-size: 17.194pt;">игры</a>
+<a href="http://xitri.com/tag/ideya" class="tag-link-17" title="33 записей" rel="tag" style="font-size: 14.6866pt;">идея</a>
+<a href="http://xitri.com/tag/optimizaciya" class="tag-link-18" title="13 записей" rel="tag" style="font-size: 10.5075pt;">оптимизация</a>
+<a href="http://xitri.com/tag/personazh" class="tag-link-14" title="13 записей" rel="tag" style="font-size: 10.5075pt;">персонаж</a>
+<a href="http://xitri.com/tag/primery" class="tag-link-16" title="46 записей" rel="tag" style="font-size: 17.403pt;">примеры</a>
+<a href="http://xitri.com/tag/specy" class="tag-link-22" title="3 записей" rel="tag" style="font-size: 8.41791pt;">спецы</a>
+<a href="http://xitri.com/tag/uroki" class="tag-link-24" title="30 записей" rel="tag" style="font-size: 14.0597pt;">уроки</a>
+<a href="http://xitri.com/tag/effekty" class="tag-link-13" title="19 записей" rel="tag" style="font-size: 11.7612pt;">эффекты</a></li>
+<li id="calendar" class="widget widget_calendar"><h2 class="widgettitle"><div id="calendar_wrap"><table id="wp-calendar" summary="Календарь">
+	<caption>Июль 2008</caption>
+	<thead>
+	<tr>
+		<th abbr="Понедельник" scope="col" title="Понедельник">Пн</th>
+		<th abbr="Вторник" scope="col" title="Вторник">Вт</th>
+		<th abbr="Среда" scope="col" title="Среда">Ср</th>
+		<th abbr="Четверг" scope="col" title="Четверг">Чт</th>
+		<th abbr="Пятница" scope="col" title="Пятница">Пт</th>
+		<th abbr="Суббота" scope="col" title="Суббота">Сб</th>
+		<th abbr="Воскресенье" scope="col" title="Воскресенье">Вс</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td abbr="Июнь" colspan="3" id="prev"><a href="http://xitri.com/2008/06" title="Просмотреть записи за Июнь 2008">« Июнь</a></td>
+		<td class="pad">&nbsp;</td>
+		<td abbr="Август" colspan="3" id="next"><a href="http://xitri.com/2008/08" title="Просмотреть записи за Август 2008">Авг »</a></td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="1" class="pad">&nbsp;</td><td><a href="http://xitri.com/2008/07/01" title="Программная анимация и сферы её применения - UAFPUG 3 и как это было">1</a></td><td>2</td><td>3</td><td>4</td><td><a href="http://xitri.com/2008/07/05" title="Где брать идеи для flash-игр">5</a></td><td>6</td>
+	</tr>
+	<tr>
+		<td>7</td><td>8</td><td><a href="http://xitri.com/2008/07/09" title="Даю порулить - программируем движение автомобиля для флэш-игр">9</a></td><td>10</td><td>11</td><td>12</td><td>13</td>
+	</tr>
+	<tr>
+		<td><a href="http://xitri.com/2008/07/14" title="Флэш-игра Shift 3 - шедевр от Armor Games">14</a></td><td>15</td><td>16</td><td>17</td><td><a href="http://xitri.com/2008/07/18" title="Сделал себе игровой баннер.">18</a></td><td>19</td><td>20</td>
+	</tr>
+	<tr>
+		<td>21</td><td>22</td><td>23</td><td>24</td><td><a href="http://xitri.com/2008/07/25" title="Программное движение автомобиля во флеш - теперь с прицепом">25</a></td><td><a href="http://xitri.com/2008/07/26" title="Я перешел на 5-й уровень!">26</a></td><td>27</td>
+	</tr>
+	<tr>
+		<td><a href="http://xitri.com/2008/07/28" title="Анимационные обманки">28</a></td><td>29</td><td>30</td><td>31</td>
+		<td class="pad" colspan="3">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table></div></h2></li>
+<li id="links" class="widget widget_links"><h2 class="widgettitle">В тему сайта</h2>
+
+	<ul>
+<li><a href="http://www.biteycastle.com/">Adam Phillips</a></li>
+<li><a href="http://andre-michelle.com/" target="_blank">André Michelle</a></li>
+<li><a href="http://www.emanueleferonato.com/" title="Italian geek and PROgrammer">Emanuele Feronato</a></li>
+<li><a href="http://flash-animation.ru/">Flash animation</a></li>
+<li><a href="http://www.murlyka.com/">Блог Murlyka</a></li>
+<li><a href="http://blog.elite-games.net/blog5.php">Монетизация флэш-игр</a></li>
+
+	</ul>
+</li>
+
+<li id="links" class="widget widget_links"><h2 class="widgettitle">Полезно читать</h2>
+
+	<ul>
+<li><a href="http://flash-ripper.com/">FlashRipper</a></li>
+<li><a href="http://injun.ru/">injun #576871</a></li>
+<li><a href="http://yzh44yzh.com/">yzh44yzh</a></li>
+<li><a href="http://murejib.com/" rel="contact met" title="Блог одиноко стоящего игрока вспышки">БОСИВ murejib</a></li>
+
+	</ul>
+</li>
+
+<li id="links" class="widget widget_links"><h2 class="widgettitle">Хорошие люди</h2>
+
+	<ul>
+<li><a href="http://18fps.ru/" title="Flash-анимация и игры">dedpbIxto</a></li>
+<li><a href="http://ilooli.org.ua/" rel="acquaintance co-worker" target="_blank">Kotaff</a></li>
+<li><a href="http://preshepka.com/" rel="friend colleague neighbor" title="Графика, анимация и озвучка" target="_blank">Ковалик</a></li>
+
+	</ul>
+</li>
+
+<li id="archives" class="widget widget_archives"><h2 class="widgettitle">Архивы</h2>
+		<ul>
+			<li><a href="http://xitri.com/2010/10" title="Октябрь 2010">Октябрь 2010</a></li>
+	<li><a href="http://xitri.com/2010/04" title="Апрель 2010">Апрель 2010</a></li>
+	<li><a href="http://xitri.com/2009/12" title="Декабрь 2009">Декабрь 2009</a></li>
+	<li><a href="http://xitri.com/2009/11" title="Ноябрь 2009">Ноябрь 2009</a></li>
+	<li><a href="http://xitri.com/2009/09" title="Сентябрь 2009">Сентябрь 2009</a></li>
+	<li><a href="http://xitri.com/2009/08" title="Август 2009">Август 2009</a></li>
+	<li><a href="http://xitri.com/2009/07" title="Июль 2009">Июль 2009</a></li>
+	<li><a href="http://xitri.com/2009/06" title="Июнь 2009">Июнь 2009</a></li>
+	<li><a href="http://xitri.com/2009/05" title="Май 2009">Май 2009</a></li>
+	<li><a href="http://xitri.com/2009/04" title="Апрель 2009">Апрель 2009</a></li>
+	<li><a href="http://xitri.com/2009/03" title="Март 2009">Март 2009</a></li>
+	<li><a href="http://xitri.com/2009/02" title="Февраль 2009">Февраль 2009</a></li>
+	<li><a href="http://xitri.com/2008/12" title="Декабрь 2008">Декабрь 2008</a></li>
+	<li><a href="http://xitri.com/2008/11" title="Ноябрь 2008">Ноябрь 2008</a></li>
+	<li><a href="http://xitri.com/2008/10" title="Октябрь 2008">Октябрь 2008</a></li>
+	<li><a href="http://xitri.com/2008/09" title="Сентябрь 2008">Сентябрь 2008</a></li>
+	<li><a href="http://xitri.com/2008/08" title="Август 2008">Август 2008</a></li>
+	<li><a href="http://xitri.com/2008/07" title="Июль 2008">Июль 2008</a></li>
+	<li><a href="http://xitri.com/2008/06" title="Июнь 2008">Июнь 2008</a></li>
+	<li><a href="http://xitri.com/2008/05" title="Май 2008">Май 2008</a></li>
+	<li><a href="http://xitri.com/2008/04" title="Апрель 2008">Апрель 2008</a></li>
+		</ul>
+</li>
+		<li id="text-3" class="widget widget_text">			<h2 class="widgettitle">Насчитали</h2>
+			<div class="textwidget"><!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t18.1;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число просмотров за 24"+
+" часа, посетителей за 24 часа и за сегодня' "+
+"border=0 width=88 height=31><\/a>")//--></script><a href="http://www.liveinternet.ru/click" target="_blank"><img src="flash-programming-drive-a-car_files/hit.gif" alt="" title="LiveInternet: показано число просмотров за 24 часа, посетителей за 24 часа и за сегодня" border="0" width="88" height="31"></a><!--/LiveInternet-->
+<p><a href="http://feeds.feedburner.com/xitri"><img src="flash-programming-drive-a-car_files/xitri.gif" style="border: 0pt none;" alt="" width="88" height="26"></a></p>
+</div>
+		</li>
+			</ul>
+
+  		</div>
+	</div>
+
+
+
+    <div id="footer">
+		<div class="subfooter">
+		<a class="inmorphing" target="_blank" href="http://www.inmorphing.com/" title="Веб-дизайн и флэш-разработка"><img alt="Inmorphing Studio - Веб-дизайн и флэш-разработка" src="flash-programming-drive-a-car_files/inmorphing.gif" border="0"></a>
+    	© Хитри - блог о хитростях разработки флэш-игр, игровых баннеров и флэш-анимации.
+		</div>
+    </div>
+
+
+
+	</div>
+
+
+<script src="flash-programming-drive-a-car_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-4953680-1";
+urchinTracker();
+</script>
+</body></html>
